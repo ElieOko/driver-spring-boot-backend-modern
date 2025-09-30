@@ -1,1 +1,6 @@
 services:
+  adminer:
+    image: 'adminer:latest'
+    #    restart: always
+    ports:
+      - 9084:8080
