@@ -3,16 +3,20 @@ package server.web.casa.app.user.application
 import server.web.casa.app.user.domain.model.UserAuth
 import server.web.casa.app.user.domain.model.User
 import server.web.casa.app.user.infrastructure.persistence.UserEntity
-import server.web.casa.app.user.infrastructure.persistence.UserMapper
+import server.web.casa.app.user.infrastructure.persistence.mapper.UserMapper
 import server.web.casa.app.user.infrastructure.persistence.UserRepository
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.stereotype.Service
+import server.web.casa.app.address.infrastructure.persistence.mapper.CityMapper
+import server.web.casa.app.user.infrastructure.persistence.mapper.TypeAccountMapper
 import kotlin.time.ExperimentalTime
 
 @Service
 class UserService(
     private val repository: UserRepository,
-    private val mapper: UserMapper
+    private val mapper: UserMapper,
+    private val mapperAccount: TypeAccountMapper,
+    private val mapperCity: CityMapper,
 ) {
     val name = "utilisateur"
     @OptIn(ExperimentalTime::class)
@@ -21,10 +25,10 @@ class UserService(
             userId = 0,
             username = user.username,
             password = user.password,
-            typeAccountId = user.typeAccountId,
+            typeAccount = mapperAccount.toEntity(user.typeAccount) ,
             email = user.email,
             phone = user.phone,
-            cityId = user.cityId
+            city = mapperCity.toEntity(user.city)
         )
         val savedEntity = repository.save(entityToSave)
         return mapper.toDomain(savedEntity)
@@ -56,10 +60,10 @@ class UserService(
             userId = user.userId,
             username = user.username,
             password = user.password,
-            typeAccountId = user.typeAccountId,
+            typeAccount = mapperAccount.toEntity(user.typeAccount),
             email = user.email,
             phone = user.phone,
-            cityId = user.cityId
+            city = mapperCity.toEntity(user.city)
         )
         val updatedUser = repository.save(entityToUpdate)
 

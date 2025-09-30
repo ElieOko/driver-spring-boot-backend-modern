@@ -4,7 +4,7 @@ import server.web.casa.app.user.domain.model.User
 import server.web.casa.app.user.infrastructure.persistence.RefreshToken
 import server.web.casa.app.user.infrastructure.persistence.RefreshTokenRepository
 import server.web.casa.app.user.infrastructure.persistence.UserEntity
-import server.web.casa.app.user.infrastructure.persistence.UserMapper
+import server.web.casa.app.user.infrastructure.persistence.mapper.UserMapper
 import server.web.casa.app.user.infrastructure.persistence.UserRepository
 import server.web.casa.security.HashEncoder
 import server.web.casa.security.JwtService
@@ -14,6 +14,8 @@ import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 import org.springframework.transaction.annotation.Transactional
+import server.web.casa.app.address.infrastructure.persistence.mapper.CityMapper
+import server.web.casa.app.user.infrastructure.persistence.mapper.TypeAccountMapper
 import java.security.MessageDigest
 import java.time.Instant
 import java.util.*
@@ -26,6 +28,8 @@ class AuthService(
     private val userRepository: UserRepository,
     private val hashEncoder: HashEncoder,
     private val mapper: UserMapper,
+    private val mapperAccount: TypeAccountMapper,
+    private val mapperCity: CityMapper,
     private val refreshTokenRepository: RefreshTokenRepository
 ) {
     data class TokenPair(
@@ -43,10 +47,10 @@ class AuthService(
             userId = 0,
             username = user.username,
             password = hashEncoder.encode(user.password),
-            typeAccountId = user.typeAccountId,
+            typeAccount = mapperAccount.toEntity(user.typeAccount) ,
             email = user.email,
             phone = user.phone,
-            cityId = user.cityId
+            city = mapperCity.toEntity(user.city)
         )
         val savedEntity = userRepository.save(entity)
         return mapper.toDomain(savedEntity)
