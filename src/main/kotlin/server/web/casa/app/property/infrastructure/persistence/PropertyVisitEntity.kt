@@ -2,7 +2,7 @@ package server.web.casa.app.property.infrastructure.persistence
 
 import jakarta.persistence.*
 
-@Table(name = "TPropertyVisits")
+@Table(name = "PropertyVisits")
 @Entity
 data class PropertyVisitEntity(
     @Id
@@ -13,18 +13,8 @@ data class PropertyVisitEntity(
     val propertyId          : Int,
     @Column(name = "userId")
     val userId              : Int,
-    @Column(name = "name")
-    val name                : String,
-    @Column(name = "secondName")
-    val secondName          : String,
-    @Column(name = "email")
-    val email               : String,
-    @Column(name = "phone")
-    val phone               : String,
     @Column(name = "message")
     val message             : String,
-    @Column(name = "address")
-    val address             : String,
     @Column(name = "visitDate")
     val visitDate           : String,
     @Column(name = "visitHour")
