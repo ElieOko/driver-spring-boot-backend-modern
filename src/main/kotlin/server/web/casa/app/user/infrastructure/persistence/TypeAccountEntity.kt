@@ -10,5 +10,7 @@ data class TypeAccountEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val typeAccountId : Int,
     @Column("name")
-    val name : String
+    val name : String,
+    @OneToOne(mappedBy = "typeAccount")
+    val user: UserEntity? = null
 )
