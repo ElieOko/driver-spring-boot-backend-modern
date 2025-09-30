@@ -8,8 +8,9 @@ data class QuartierEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column("id")
     val quartierId  : Int,
+    @OneToOne
+    @JoinColumn("commune_id")
+    val commune   : CommuneEntity,
     @Column("name")
     val name        : String,
-    @Column("communeId")
-    val communeId   : Int
 )
