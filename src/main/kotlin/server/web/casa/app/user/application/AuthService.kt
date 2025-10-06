@@ -40,7 +40,7 @@ class AuthService(
     )
 
     @OptIn(ExperimentalTime::class)
-    fun register(user : User): Pair<User, String> {
+    fun register(user : User): Pair<User?, String> {
         val userEntity = userRepository.findByUsername(user.username.trim())
         if(userEntity != null) {
             throw ResponseStatusException(HttpStatus.CONFLICT, "A user with that email already exists.")
@@ -56,12 +56,12 @@ class AuthService(
         )
         val savedEntity = userRepository.save(entity)
         val newAccessToken = jwtService.generateAccessToken(savedEntity.userId.toHexString())
-        val userData : User = mapper.toDomain(savedEntity)
-        val result = Pair<User, String>(userData,newAccessToken)
+        val userData : User? = mapper.toDomain(savedEntity)
+        val result = Pair<User?, String>(userData,newAccessToken)
         return result
     }
 
-    fun login(username: String, password: String): Pair<TokenPair, User> {
+    fun login(username: String, password: String): Pair<TokenPair, User?> {
         val user = userRepository.findByUsername(username)
             ?: throw BadCredentialsException("Invalid credentials.")
 
@@ -73,7 +73,7 @@ class AuthService(
         val newRefreshToken = jwtService.generateRefreshToken(user.userId.toHexString())
 
         storeRefreshToken(user.userId, newRefreshToken)
-        val result = Pair<TokenPair, User>(
+        val result = Pair<TokenPair, User?>(
             TokenPair(
                 accessToken = newAccessToken,
                 refreshToken = newRefreshToken

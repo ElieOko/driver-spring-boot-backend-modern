@@ -20,7 +20,7 @@ class UserService(
 ) {
     val name = "utilisateur"
     @OptIn(ExperimentalTime::class)
-    fun createUser(user: User) : User {
+    fun createUser(user: User) : User? {
 
         val entityToSave = UserEntity(
             userId = 0,
@@ -35,14 +35,14 @@ class UserService(
         return mapper.toDomain(savedEntity)
     }
 
-    fun findAllUser() : List<User> {
+    fun findAllUser() : List<User?> {
         val allEntityUser = repository.findAll()
         return allEntityUser.stream().map {
             mapper.toDomain(it)
         }.toList()
     }
 
-    fun findIdUser(id : Long) : User{
+    fun findIdUser(id : Long) : User?{
         val userEntity = repository.findById(id).orElseThrow{->
             EntityNotFoundException("Aucun $name avec cet identifiant $id")
         }

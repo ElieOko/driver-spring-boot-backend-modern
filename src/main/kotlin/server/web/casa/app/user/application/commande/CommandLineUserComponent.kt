@@ -18,7 +18,7 @@ class CommandLineUserComponent(
         log.info("commande executor **User")
         log.info(this::class.simpleName)
         try {
-            //createTypeAccount()
+            createTypeAccount()
             //getAllTypeAccount()
         }
         catch (e : ConstraintViolationException){
