@@ -4,6 +4,6 @@ import server.web.casa.route.auth.AuthRoute
 
 object GlobalRoute{
 //    val auth = AuthRoute()
-    val root = "api"
-    val auth = "/auth/"
+   const val ROOT = "api"
+   const val AUTH = "/auth/"
 }
