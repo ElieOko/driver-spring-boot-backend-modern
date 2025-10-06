@@ -1,7 +1,9 @@
 package server.web.casa.app.actor.infrastructure.controller
 
 import jakarta.validation.Valid
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -15,9 +17,12 @@ import server.web.casa.app.user.application.AuthService
 import server.web.casa.app.user.application.TypeAccountService
 import server.web.casa.app.user.application.UserService
 import server.web.casa.app.user.domain.model.User
+import server.web.casa.route.actor.ActorRoute
+
+const val ROUTE_ACTOR_BAILLEUR = ActorRoute.BAILLEUR
 
 @RestController
-@RequestMapping
+@RequestMapping(ROUTE_ACTOR_BAILLEUR)
 class BailleurController(
    private val service : BailleurService,
    private val authService: AuthService,
@@ -26,10 +31,10 @@ class BailleurController(
    private val typeAccountService: TypeAccountService,
    private val typeCardService: TypeCardService,
 ) {
-    @PostMapping
+    @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
     fun create(
         @Valid @RequestBody request: BailleurUser
-    ): ResponseEntity<Map<String, Any>> {
+    ): ResponseEntity<Map<String, Any?>> {
         val city = cityService.findByIdCity(request.user.cityId)
         val typeAccount = typeAccountService.findByIdTypeAccount(request.user.typeAccountId)
         val typeCard = typeCardService.findByIdTypeCard(request.bailleur.typeCardId)
@@ -65,7 +70,7 @@ class BailleurController(
             )
             val bailleutCreated = service.createBailleur(data)
             val response = mapOf(
-                "message" to "Votre compte ${userCreated.first.typeAccount?.name?.capitalize()} a été créer avec succès",
+                "message" to "Votre compte ${userCreated.first?.typeAccount?.name?.capitalize()} a été créer avec succès",
                 "user" to userCreated.first,
                 "bailleur" to bailleutCreated,
                 "token" to userCreated.second
@@ -74,5 +79,12 @@ class BailleurController(
         }
         val response = mapOf("error" to "Erreur au niveau de la validation des données")
         return ResponseEntity.badRequest().body(response)
+    }
+
+    @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun getAllCity(): ResponseEntity<Map<String, List<Bailleur>>> {
+        val data = service.findAllBailleur()
+        val response = mapOf("bailleurs" to data)
+        return ResponseEntity.ok().body(response)
     }
 }
