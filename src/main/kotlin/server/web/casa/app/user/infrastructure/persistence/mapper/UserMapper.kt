@@ -12,28 +12,36 @@ class UserMapper(
     val mapperCity : CityMapper,
 ) {
 
-    fun toDomain(entity: UserEntity) : User {
-        return User(
-            userId = entity.userId,
-            username = entity.username,
-            password = entity.password.toString(),
-            typeAccount = mapperAccount.toDomain(entity.typeAccount) ,
-            email = entity.email,
-            phone = entity.phone,
-            city = mapperCity.toDomain(entity.city)
-        )
+    fun toDomain(entity: UserEntity?) : User? {
+        var data : User? = null
+        if (entity != null ){
+          data = User(
+                userId = entity.userId,
+                username = entity.username,
+                password = entity.password.toString(),
+                typeAccount = mapperAccount.toDomain(entity.typeAccount) ,
+                email = entity.email,
+                phone = entity.phone,
+                city = mapperCity.toDomain(entity.city)
+          )
+        }
+        return data
     }
 
     @OptIn(ExperimentalTime::class)
-    fun toEntity(user: User) : UserEntity {
-        return UserEntity(
-            userId = user.userId,
-            username = user.username,
-            password = user.password,
-            typeAccount =mapperAccount.toEntity(user.typeAccount) ,
-            email = user.email,
-            phone = user.phone,
-            city = mapperCity.toEntity(user.city)
-        )
+    fun toEntity(user: User? = null) : UserEntity? {
+        var data : UserEntity? = null
+        if (user != null){
+           data = UserEntity(
+                userId = user.userId,
+                username = user.username,
+                password = user.password,
+                typeAccount =mapperAccount.toEntity(user.typeAccount) ,
+                email = user.email,
+                phone = user.phone,
+                city = mapperCity.toEntity(user.city)
+            )
+        }
+        return data
     }
 }
