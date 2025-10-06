@@ -1,16 +1,15 @@
 package server.web.casa.route.auth
 
 import server.web.casa.route.GlobalRoute
-import server.web.casa.utils.locationApi
 
 object AuthRoute {
-    val register = locationApi(GlobalRoute.auth,AuthFeatures.REGISTER.name)
-    val login = locationApi(GlobalRoute.auth,AuthFeatures.LOGIN.name)
-    val resetPassword = locationApi(GlobalRoute.auth,AuthFeatures.RESET_PASSWORD.name)
+    const val REGISTER = "${GlobalRoute.AUTH}/${AuthFeatures.REGISTER_PATH}"
+    const val LOGIN = "${GlobalRoute.AUTH}/${AuthFeatures.LOGIN_PATH}"
+    const val RESET_PASSWORD = "${GlobalRoute.AUTH}/${AuthFeatures.PASSWORD_RESET_PATH}"
 }
 
-enum class AuthFeatures{
-    LOGIN,
-    REGISTER,
-    RESET_PASSWORD
+object AuthFeatures{
+   const val REGISTER_PATH = "register"
+   const val LOGIN_PATH = "login"
+   const val PASSWORD_RESET_PATH = "password/reset"
 }
