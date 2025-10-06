@@ -2,10 +2,10 @@ package server.web.casa.app.user.application
 
 import server.web.casa.app.user.domain.model.User
 import server.web.casa.app.user.infrastructure.persistence.RefreshToken
-import server.web.casa.app.user.infrastructure.persistence.RefreshTokenRepository
+import server.web.casa.app.user.infrastructure.persistence.repository.RefreshTokenRepository
 import server.web.casa.app.user.infrastructure.persistence.UserEntity
 import server.web.casa.app.user.infrastructure.persistence.mapper.UserMapper
-import server.web.casa.app.user.infrastructure.persistence.UserRepository
+import server.web.casa.app.user.infrastructure.persistence.repository.UserRepository
 import server.web.casa.security.HashEncoder
 import server.web.casa.security.JwtService
 import org.springframework.http.HttpStatus
@@ -20,7 +20,7 @@ import java.security.MessageDigest
 import java.time.Instant
 import java.util.*
 import kotlin.time.ExperimentalTime
-//sudo docker run --name casa-db -e POSTGRES_PASSWORD=root -p 5433:5433 -d postgres
+//sudo docker run --name casa-db -e POSTGRES_PASSWORD=root -e POSTGRES_DB=testdb e- POSTGRES_USERNAME=postgres -p 5434:5432 -d postgres
 //https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04
 @Service
 class AuthService(

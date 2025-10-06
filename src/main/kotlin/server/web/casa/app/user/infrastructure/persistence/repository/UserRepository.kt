@@ -1,9 +1,10 @@
-package server.web.casa.app.user.infrastructure.persistence
+package server.web.casa.app.user.infrastructure.persistence.repository
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.repository.query.Param
+import server.web.casa.app.user.infrastructure.persistence.UserEntity
 
-interface UserRepository : JpaRepository<UserEntity, Long>{
+interface UserRepository : JpaRepository<UserEntity, Long> {
 
 //    @Query("select")
 //@Query("""

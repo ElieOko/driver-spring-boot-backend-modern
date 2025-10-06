@@ -9,8 +9,10 @@ data class PropertyFavoriteEntity(
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val propertyFavoriteId : Int,
-    @Column(name = "userId")
-    val userId : Int,
-    @Column(name = "propertyId")
-    val propertyId : Int
+//    @Column(name = "userId")
+//    val userId : Int,
+//    @Column(name = "propertyId")
+//    val propertyId : Int,
+    @ManyToMany(mappedBy = "favorites")
+    val property : List<PropertyEntity>
 )

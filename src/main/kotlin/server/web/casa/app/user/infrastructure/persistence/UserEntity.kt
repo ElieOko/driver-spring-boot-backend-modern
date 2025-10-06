@@ -6,10 +6,15 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
+import jakarta.persistence.JoinTable
+import jakarta.persistence.ManyToMany
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.OneToMany
 import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
 import server.web.casa.app.address.infrastructure.persistence.CityEntity
+import server.web.casa.app.property.infrastructure.persistence.PropertyEntity
+import server.web.casa.app.property.infrastructure.persistence.PropertyFavoriteEntity
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
@@ -37,4 +42,7 @@ data class UserEntity @OptIn(ExperimentalTime::class) constructor(
     val phone: String,
     @Column("createdAt")
     val createdAt: Instant = Clock.System.now(),
+    @OneToMany(mappedBy = "user")
+    val properties : List<PropertyEntity> = emptyList(),
+
 )

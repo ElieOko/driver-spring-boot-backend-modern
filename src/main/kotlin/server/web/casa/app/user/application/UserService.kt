@@ -4,7 +4,7 @@ import server.web.casa.app.user.domain.model.UserAuth
 import server.web.casa.app.user.domain.model.User
 import server.web.casa.app.user.infrastructure.persistence.UserEntity
 import server.web.casa.app.user.infrastructure.persistence.mapper.UserMapper
-import server.web.casa.app.user.infrastructure.persistence.UserRepository
+import server.web.casa.app.user.infrastructure.persistence.repository.UserRepository
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.stereotype.Service
 import server.web.casa.app.address.infrastructure.persistence.mapper.CityMapper
@@ -21,6 +21,7 @@ class UserService(
     val name = "utilisateur"
     @OptIn(ExperimentalTime::class)
     fun createUser(user: User) : User {
+
         val entityToSave = UserEntity(
             userId = 0,
             username = user.username,

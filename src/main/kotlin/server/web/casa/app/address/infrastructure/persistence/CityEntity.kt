@@ -1,6 +1,7 @@
 package server.web.casa.app.address.infrastructure.persistence
 
 import jakarta.persistence.*
+import server.web.casa.app.property.infrastructure.persistence.PropertyEntity
 import server.web.casa.app.user.infrastructure.persistence.UserEntity
 
 @Entity
@@ -17,5 +18,7 @@ data class CityEntity(
     @OneToOne(mappedBy = "city")
     val user: UserEntity? = null,
     @OneToOne(mappedBy = "city")
-    val district: DistrictEntity? = null
+    val district: DistrictEntity? = null,
+    @OneToMany(mappedBy = "city")
+    val properties : List<PropertyEntity> = emptyList()
 )

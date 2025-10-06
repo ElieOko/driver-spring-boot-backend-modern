@@ -1,6 +1,9 @@
 package server.web.casa.app.property.infrastructure.persistence
 
 import jakarta.persistence.*
+import server.web.casa.app.address.infrastructure.persistence.CityEntity
+import server.web.casa.app.address.infrastructure.persistence.CommuneEntity
+import server.web.casa.app.user.infrastructure.persistence.UserEntity
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
@@ -34,22 +37,26 @@ data class PropertyEntity @OptIn(ExperimentalTime::class) constructor(
     val floor : Int,
     @Column(name = "address")
     val address : String,
-    @Column(name = "cityId")
-    val cityId : Int,
+    @ManyToOne
+    @JoinColumn("city_id")
+    val city : CityEntity,
     @Column(name = "postalCode")
     val postalCode : String,
-    @Column(name = "communeId")
-    val communeId : Int,
+    @ManyToOne
+    @JoinColumn("commune_id")
+    val commune : CommuneEntity,
     @Column(name = "quartier")
     val quartier  : String,
     @Column(name = "sold")
     val sold : Boolean,
     @Column(name = "transactionType")
     val transactionType : String,
-    @Column(name = "propertyTypeId")
-    val propertyTypeId : Int,
-    @Column(name = "userId")
-    val userId : Int,
+    @OneToOne
+    @JoinColumn("property_type_id")
+    val propertyType : PropertyEntity? = null,
+    @ManyToOne
+    @JoinColumn("user_id")
+    val user : UserEntity,
     @Column(name = "latitude")
     val latitude : Double,
     @Column(name = "longitude")
@@ -59,5 +66,15 @@ data class PropertyEntity @OptIn(ExperimentalTime::class) constructor(
     @Column("createdAt")
     val createdAt: Instant = Clock.System.now(),
     @Column("updatedAt")
-    val updatedAt: Instant = Clock.System.now()
+    val updatedAt: Instant = Clock.System.now(),
+
+    @ManyToMany
+    @JoinTable(
+        "PropertyFavorites",
+        joinColumns = [JoinColumn("property_id")],
+        inverseJoinColumns = [JoinColumn("user_id")]
+    )
+    val favorites : List<PropertyFavoriteEntity> = emptyList()
+
+
 )
