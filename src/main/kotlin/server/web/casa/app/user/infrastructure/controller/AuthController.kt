@@ -3,24 +3,48 @@ package server.web.casa.app.user.infrastructure.controller
 
 import server.web.casa.app.user.domain.model.User
 import jakarta.validation.Valid
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import server.web.casa.app.address.application.service.CityService
 import server.web.casa.app.user.application.AuthService
+import server.web.casa.app.user.application.TypeAccountService
 import server.web.casa.app.user.domain.model.UserAuth
+import server.web.casa.app.user.domain.model.UserRequest
+import server.web.casa.route.auth.AuthRoute
 
+const val ROUTE_REGISTER = AuthRoute.REGISTER
 @RestController
 @RequestMapping
 class AuthController(
-    private val authService: AuthService
+    private val authService: AuthService,
+    private val cityService: CityService,
+    private val typeAccountService: TypeAccountService
 ) {
 
-    @PostMapping("/register")
+    @PostMapping(ROUTE_REGISTER)
     fun register(
-        @Valid @RequestBody user: User
-    ) {
-        authService.register(user)
+        @Valid @RequestBody user: UserRequest
+    ): ResponseEntity<Map<String, Any>> {
+        val city = cityService.findByIdCity(user.cityId)
+        val typeAccount = typeAccountService.findByIdTypeAccount(user.typeAccountId)
+        if (city != null && typeAccount != null){
+            val userSystem = User(
+                userId = 0,
+                username = user.username,
+                password = user.password,
+                typeAccount = typeAccount,
+                email = user.email,
+                phone = user.phone,
+                city = city
+            )
+           val response: Map<String, Any> = authService.register(userSystem)
+            return ResponseEntity.status(201).body(response)
+        }
+        val response = mapOf("error" to "Erreur au niveau de la validation des données")
+        return ResponseEntity.badRequest().body(response)
     }
 
     @PostMapping("/login")
