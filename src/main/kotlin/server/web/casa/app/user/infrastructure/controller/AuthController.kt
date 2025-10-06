@@ -16,6 +16,7 @@ import server.web.casa.app.user.domain.model.UserRequest
 import server.web.casa.route.auth.AuthRoute
 
 const val ROUTE_REGISTER = AuthRoute.REGISTER
+const val ROUTE_LOGIN = AuthRoute.LOGIN
 @RestController
 @RequestMapping
 class AuthController(
@@ -41,17 +42,24 @@ class AuthController(
                 city = city
             )
            val response: Map<String, Any> = authService.register(userSystem)
-            return ResponseEntity.status(201).body(response)
+           return ResponseEntity.status(201).body(response)
         }
         val response = mapOf("error" to "Erreur au niveau de la validation des données")
         return ResponseEntity.badRequest().body(response)
     }
 
-    @PostMapping("/login")
+    @PostMapping(ROUTE_LOGIN)
     fun login(
-        @RequestBody body: UserAuth
-    ): AuthService.TokenPair {
-        return authService.login(body.username, body.password)
+      @Valid @RequestBody body: UserAuth
+    ): ResponseEntity<Map<String, Any>> {
+      val data = authService.login(body.username, body.password)
+      val response = mapOf(
+          "user" to data.second,
+          "token" to data.first.accessToken,
+          "refresh_token" to data.first.refreshToken,
+          "message" to "Connexion réussie avec succès"
+      )
+      return ResponseEntity.ok().body(response)
     }
 
     @PostMapping("/refresh")
