@@ -19,7 +19,7 @@ class CommandLineUserComponent(
         log.info(this::class.simpleName)
         try {
             //createTypeAccount()
-            getAllTypeAccount()
+            //getAllTypeAccount()
         }
         catch (e : ConstraintViolationException){
             log.info(e.message)
@@ -29,7 +29,7 @@ class CommandLineUserComponent(
     fun createTypeAccount(){
         val store: List<TypeAccountEntity?> = typeAccountRepository.saveAll<TypeAccountEntity>(
             listOf(
-                TypeAccountEntity(name= "autonome"),
+                TypeAccountEntity(name= "admin"),
                 TypeAccountEntity(name= "commissionnaire"),
                 TypeAccountEntity(name = "bailleur"),
                 TypeAccountEntity(name = "locataire"),
