@@ -2,7 +2,7 @@ package server.web.casa.app.address.infrastructure.persistence.mapper
 
 import org.springframework.stereotype.Component
 import server.web.casa.app.address.domain.model.Country
-import server.web.casa.app.address.infrastructure.persistence.CountryEntity
+import server.web.casa.app.address.infrastructure.persistence.entity.CountryEntity
 
 @Component
 class CountryMapper(

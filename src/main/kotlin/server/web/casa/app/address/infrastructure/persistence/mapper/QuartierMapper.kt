@@ -2,7 +2,7 @@ package server.web.casa.app.address.infrastructure.persistence.mapper
 
 import org.springframework.stereotype.Component
 import server.web.casa.app.address.domain.model.Quartier
-import server.web.casa.app.address.infrastructure.persistence.QuartierEntity
+import server.web.casa.app.address.infrastructure.persistence.entity.QuartierEntity
 
 @Component
 class QuartierMapper(

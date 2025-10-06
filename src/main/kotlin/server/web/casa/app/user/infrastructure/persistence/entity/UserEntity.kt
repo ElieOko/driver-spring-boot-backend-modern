@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.OneToMany
 import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
-import server.web.casa.app.address.infrastructure.persistence.CityEntity
+import server.web.casa.app.address.infrastructure.persistence.entity.CityEntity
 import server.web.casa.app.property.infrastructure.persistence.PropertyEntity
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime

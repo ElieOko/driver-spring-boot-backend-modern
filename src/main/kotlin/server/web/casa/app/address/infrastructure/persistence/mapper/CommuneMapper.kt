@@ -2,7 +2,7 @@ package server.web.casa.app.address.infrastructure.persistence.mapper
 
 import org.springframework.stereotype.Component
 import server.web.casa.app.address.domain.model.Commune
-import server.web.casa.app.address.infrastructure.persistence.CommuneEntity
+import server.web.casa.app.address.infrastructure.persistence.entity.CommuneEntity
 
 @Component
 class CommuneMapper(

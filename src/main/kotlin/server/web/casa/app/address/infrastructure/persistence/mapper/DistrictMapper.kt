@@ -2,7 +2,7 @@ package server.web.casa.app.address.infrastructure.persistence.mapper
 
 import org.springframework.stereotype.Component
 import server.web.casa.app.address.domain.model.District
-import server.web.casa.app.address.infrastructure.persistence.DistrictEntity
+import server.web.casa.app.address.infrastructure.persistence.entity.DistrictEntity
 
 @Component
 class DistrictMapper(
