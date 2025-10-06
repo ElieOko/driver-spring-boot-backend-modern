@@ -2,7 +2,7 @@ package server.web.casa.app.address.infrastructure.persistence
 
 import jakarta.persistence.*
 import server.web.casa.app.property.infrastructure.persistence.PropertyEntity
-import server.web.casa.app.user.infrastructure.persistence.UserEntity
+import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity
 
 @Entity
 @Table(name = "cities")

@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.core.annotation.Order
 import org.springframework.stereotype.Component
-import server.web.casa.app.user.infrastructure.persistence.TypeAccountEntity
+import server.web.casa.app.user.infrastructure.persistence.entity.TypeAccountEntity
 import server.web.casa.app.user.infrastructure.persistence.repository.TypeAccountRepository
 
 @Component

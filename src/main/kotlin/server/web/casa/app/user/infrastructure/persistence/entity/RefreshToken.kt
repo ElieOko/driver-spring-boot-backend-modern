@@ -1,4 +1,4 @@
-package server.web.casa.app.user.infrastructure.persistence
+package server.web.casa.app.user.infrastructure.persistence.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

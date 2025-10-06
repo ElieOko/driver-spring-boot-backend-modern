@@ -2,7 +2,7 @@ package server.web.casa.app.user.application
 
 import server.web.casa.app.user.domain.model.UserAuth
 import server.web.casa.app.user.domain.model.User
-import server.web.casa.app.user.infrastructure.persistence.UserEntity
+import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity
 import server.web.casa.app.user.infrastructure.persistence.mapper.UserMapper
 import server.web.casa.app.user.infrastructure.persistence.repository.UserRepository
 import jakarta.persistence.EntityNotFoundException

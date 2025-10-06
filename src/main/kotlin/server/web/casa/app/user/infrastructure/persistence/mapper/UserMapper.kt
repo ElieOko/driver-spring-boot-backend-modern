@@ -3,7 +3,7 @@ package server.web.casa.app.user.infrastructure.persistence.mapper
 import org.springframework.stereotype.Component
 import server.web.casa.app.address.infrastructure.persistence.mapper.CityMapper
 import server.web.casa.app.user.domain.model.User
-import server.web.casa.app.user.infrastructure.persistence.UserEntity
+import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity
 import kotlin.time.ExperimentalTime
 
 @Component

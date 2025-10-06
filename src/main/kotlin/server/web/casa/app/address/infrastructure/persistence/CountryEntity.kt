@@ -1,7 +1,6 @@
 package server.web.casa.app.address.infrastructure.persistence
 
 import jakarta.persistence.*
-import server.web.casa.app.user.infrastructure.persistence.UserEntity
 
 @Entity
 @Table(name = "countries")

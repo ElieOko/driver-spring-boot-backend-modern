@@ -3,7 +3,7 @@ package server.web.casa.app.property.infrastructure.persistence
 import jakarta.persistence.*
 import server.web.casa.app.address.infrastructure.persistence.CityEntity
 import server.web.casa.app.address.infrastructure.persistence.CommuneEntity
-import server.web.casa.app.user.infrastructure.persistence.UserEntity
+import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant

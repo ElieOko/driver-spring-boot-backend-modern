@@ -2,7 +2,7 @@ package server.web.casa.app.user.application
 
 import org.springframework.stereotype.Service
 import server.web.casa.app.user.domain.model.TypeAccount
-import server.web.casa.app.user.infrastructure.persistence.TypeAccountEntity
+import server.web.casa.app.user.infrastructure.persistence.entity.TypeAccountEntity
 import server.web.casa.app.user.infrastructure.persistence.mapper.TypeAccountMapper
 import server.web.casa.app.user.infrastructure.persistence.repository.TypeAccountRepository
 

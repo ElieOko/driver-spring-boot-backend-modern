@@ -2,7 +2,7 @@ package server.web.casa.app.user.infrastructure.persistence.repository
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.repository.query.Param
-import server.web.casa.app.user.infrastructure.persistence.UserEntity
+import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity
 
 interface UserRepository : JpaRepository<UserEntity, Long> {
 

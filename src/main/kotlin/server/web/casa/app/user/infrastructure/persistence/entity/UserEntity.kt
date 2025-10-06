@@ -1,4 +1,4 @@
-package server.web.casa.app.user.infrastructure.persistence
+package server.web.casa.app.user.infrastructure.persistence.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -6,15 +6,11 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
-import jakarta.persistence.JoinTable
-import jakarta.persistence.ManyToMany
-import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
 import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
 import server.web.casa.app.address.infrastructure.persistence.CityEntity
 import server.web.casa.app.property.infrastructure.persistence.PropertyEntity
-import server.web.casa.app.property.infrastructure.persistence.PropertyFavoriteEntity
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
