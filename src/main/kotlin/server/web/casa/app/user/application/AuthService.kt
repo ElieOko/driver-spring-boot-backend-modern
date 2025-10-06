@@ -64,7 +64,7 @@ class AuthService(
         return response
     }
 
-    fun login(username: String, password: String): TokenPair {
+    fun login(username: String, password: String): Pair<TokenPair, User> {
         val user = userRepository.findByUsername(username)
             ?: throw BadCredentialsException("Invalid credentials.")
 
@@ -76,11 +76,13 @@ class AuthService(
         val newRefreshToken = jwtService.generateRefreshToken(user.userId.toHexString())
 
         storeRefreshToken(user.userId, newRefreshToken)
-
-        return TokenPair(
-            accessToken = newAccessToken,
-            refreshToken = newRefreshToken
-        )
+        val result = Pair<TokenPair, User>(
+            TokenPair(
+                accessToken = newAccessToken,
+                refreshToken = newRefreshToken
+            )
+            ,mapper.toDomain(user))
+        return result
     }
 
     @Transactional
