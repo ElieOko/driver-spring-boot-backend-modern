@@ -2,8 +2,11 @@ package server.web.casa.app.address.application.service
 
 import org.springframework.stereotype.Service
 import server.web.casa.app.address.domain.model.City
+import server.web.casa.app.address.infrastructure.persistence.entity.CityEntity
 import server.web.casa.app.address.infrastructure.persistence.mapper.CityMapper
 import server.web.casa.app.address.infrastructure.persistence.repository.CityRepository
+import java.util.Optional
+import kotlin.streams.toList
 
 @Service
 class CityService(
@@ -15,5 +18,9 @@ class CityService(
         return allEntity.stream().map {
             mapper.toDomain(it)
         }.toList()
+    }
+    fun findByIdCity(id : Long) : City? {
+         val data = repository.findById(id).orElse(null)
+        return mapper.toDomain(data)
     }
 }
