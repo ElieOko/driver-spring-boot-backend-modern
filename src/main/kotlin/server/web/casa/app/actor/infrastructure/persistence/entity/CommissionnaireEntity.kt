@@ -1,14 +1,13 @@
-package server.web.casa.app.actor.infrastructure.persistence
+package server.web.casa.app.actor.infrastructure.persistence.entity
 
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "bailleurs")
-data class BailleurEntity(
-    @Id
+@Table(name = "commissionnaires")
+data class CommissionnaireEntity(
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column("id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val bailleurId  : Int,
+    val commissionnaireId : Int,
     @Column("firstName")
     val firstName   : String,
     @Column("lastName")
@@ -23,14 +22,10 @@ data class BailleurEntity(
     val cardFront   : String,
     @Column("cardBack")
     val cardBack    : String,
-    @Column("parrainId")
-    val parrainId   : Int? = null,
     @Column("userId")
     val userId      : Int,
     @Column("typeCardId")
     val typeCardId  : Int,
     @Column("numberCard")
-    val numberCard  : String? = null,
-    @Column("note")
-    val note        : String? = null
+    val numberCard  : String? = null
 )

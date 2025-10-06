@@ -1,4 +1,4 @@
-package server.web.casa.app.actor.infrastructure.persistence
+package server.web.casa.app.actor.infrastructure.persistence.entity
 
 import jakarta.persistence.*
 
