@@ -33,8 +33,12 @@ class ServerConfig(
                     .requestMatchers("/api/*")
                     .permitAll()
 
+                    .requestMatchers("/auth/*")
+                    .permitAll()
+
                     .requestMatchers(HttpMethod.POST,"/clients")
                     .permitAll()
+
                     .dispatcherTypeMatchers(
                         DispatcherType.ERROR,
                         DispatcherType.FORWARD
