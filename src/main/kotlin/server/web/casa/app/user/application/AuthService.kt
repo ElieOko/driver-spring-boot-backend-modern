@@ -40,7 +40,7 @@ class AuthService(
     )
 
     @OptIn(ExperimentalTime::class)
-    fun register(user : User): Map<String, Any> {
+    fun register(user : User): Pair<User, String> {
         val userEntity = userRepository.findByUsername(user.username.trim())
         if(userEntity != null) {
             throw ResponseStatusException(HttpStatus.CONFLICT, "A user with that email already exists.")
@@ -57,11 +57,8 @@ class AuthService(
         val savedEntity = userRepository.save(entity)
         val newAccessToken = jwtService.generateAccessToken(savedEntity.userId.toHexString())
         val userData : User = mapper.toDomain(savedEntity)
-        val response = mapOf(
-            "user" to userData,
-            "token" to newAccessToken
-            )
-        return response
+        val result = Pair<User, String>(userData,newAccessToken)
+        return result
     }
 
     fun login(username: String, password: String): Pair<TokenPair, User> {

@@ -41,7 +41,12 @@ class AuthController(
                 phone = user.phone,
                 city = city
             )
-           val response: Map<String, Any> = authService.register(userSystem)
+           val data = authService.register(userSystem)
+           val response = mapOf(
+               "user" to data.first,
+               "token" to data.second,
+               "message" to "Votre compte ${data.first.typeAccount?.name?.capitalize()} a été créer avec succès"
+            )
            return ResponseEntity.status(201).body(response)
         }
         val response = mapOf("error" to "Erreur au niveau de la validation des données")

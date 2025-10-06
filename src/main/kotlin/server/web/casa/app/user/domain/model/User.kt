@@ -37,5 +37,5 @@ data class UserRequest(
     val email : String? = null,
     @field:NotBlank(message = "Phone is required")
     val phone : String,
-    val cityId : Long
+    val cityId : Long,
 )

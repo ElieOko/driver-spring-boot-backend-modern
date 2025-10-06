@@ -1,5 +1,6 @@
 package server.web.casa.app.user.infrastructure.persistence.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -31,6 +32,7 @@ data class UserEntity @OptIn(ExperimentalTime::class) constructor(
     @Column("username", unique = true)
     val username: String,
     @Column("password", nullable = false)
+    @JsonIgnore
     val password: String?,
     @Column("email", nullable = true)
     val email: String? = null,
