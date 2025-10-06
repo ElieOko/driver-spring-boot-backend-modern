@@ -10,7 +10,9 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.OneToMany
 import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
+import server.web.casa.app.actor.infrastructure.persistence.entity.BailleurEntity
 import server.web.casa.app.address.infrastructure.persistence.entity.CityEntity
+import server.web.casa.app.address.infrastructure.persistence.entity.DistrictEntity
 import server.web.casa.app.property.infrastructure.persistence.PropertyEntity
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
@@ -27,7 +29,7 @@ data class UserEntity @OptIn(ExperimentalTime::class) constructor(
     @JoinColumn("typeAccountId")
     val typeAccount: TypeAccountEntity,
     @OneToOne
-    @JoinColumn(name = "city_id")
+    @JoinColumn(name = "cityId")
     val city: CityEntity,
     @Column("username", unique = true)
     val username: String,
@@ -42,5 +44,9 @@ data class UserEntity @OptIn(ExperimentalTime::class) constructor(
     val createdAt: Instant = Clock.System.now(),
     @OneToMany(mappedBy = "user")
     val properties : List<PropertyEntity> = emptyList(),
+    @OneToOne(mappedBy = "user")
+    val bailleur: BailleurEntity? = null,
+    @OneToOne(mappedBy = "parrain")
+    val parrainBailleur: BailleurEntity? = null,
 
 )

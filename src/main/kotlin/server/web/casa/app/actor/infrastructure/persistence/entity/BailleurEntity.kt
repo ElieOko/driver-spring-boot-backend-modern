@@ -1,6 +1,7 @@
 package server.web.casa.app.actor.infrastructure.persistence.entity
 
 import jakarta.persistence.*
+import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity
 
 @Entity
 @Table(name = "bailleurs")
@@ -8,29 +9,32 @@ data class BailleurEntity(
     @Id
     @Column("id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val bailleurId  : Int,
+    val bailleurId : Long,
     @Column("firstName")
-    val firstName   : String,
+    val firstName : String,
     @Column("lastName")
-    val lastName    : String,
+    val lastName : String,
     @Column("fullName")
-    val fullName    : String,
+    val fullName : String,
     @Column("address")
-    val address     : String,
+    val address : String,
     @Column("images")
-    val images      : String,
+    val images : String,
     @Column("cardFront")
-    val cardFront   : String,
+    val cardFront : String,
     @Column("cardBack")
-    val cardBack    : String,
-    @Column("parrainId")
-    val parrainId   : Int? = null,
-    @Column("userId")
-    val userId      : Int,
-    @Column("typeCardId")
-    val typeCardId  : Int,
+    val cardBack : String,
+    @OneToOne
+    @JoinColumn(name = "parrainId")
+    val parrain : UserEntity? = null,
+    @OneToOne
+    @JoinColumn(name = "userId")
+    val user : UserEntity?,
+    @OneToOne
+    @JoinColumn(name = "typeCardId")
+    val typeCard : TypeCardEntity,
     @Column("numberCard")
-    val numberCard  : String? = null,
+    val numberCard : String? = null,
     @Column("note")
-    val note        : String? = null
+    val note : String? = null
 )
