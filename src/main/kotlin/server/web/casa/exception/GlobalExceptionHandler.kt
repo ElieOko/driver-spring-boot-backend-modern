@@ -1,4 +1,4 @@
-package elieoko.spring.boot.core.exception
+package server.web.casa.exception
 
 import jakarta.persistence.EntityNotFoundException
 import org.slf4j.LoggerFactory
@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
-import server.web.casa.exception.ErrorResponseDto
 import java.time.LocalDateTime
 
 @ControllerAdvice
