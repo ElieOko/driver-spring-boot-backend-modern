@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
 import org.springframework.transaction.annotation.Transactional
 import server.web.casa.app.address.infrastructure.persistence.mapper.CityMapper
+import server.web.casa.app.address.infrastructure.persistence.repository.CityRepository
 import server.web.casa.app.user.infrastructure.persistence.mapper.TypeAccountMapper
 import java.security.MessageDigest
 import java.time.Instant
@@ -26,6 +27,7 @@ import kotlin.time.ExperimentalTime
 class AuthService(
     private val jwtService: JwtService,
     private val userRepository: UserRepository,
+    private val cityRepository: CityRepository,
     private val hashEncoder: HashEncoder,
     private val mapper: UserMapper,
     private val mapperAccount: TypeAccountMapper,
@@ -38,7 +40,7 @@ class AuthService(
     )
 
     @OptIn(ExperimentalTime::class)
-    fun register(user : User): User {
+    fun register(user : User): Map<String, Any> {
         val userEntity = userRepository.findByUsername(user.username.trim())
         if(userEntity != null) {
             throw ResponseStatusException(HttpStatus.CONFLICT, "A user with that email already exists.")
@@ -53,7 +55,13 @@ class AuthService(
             city = mapperCity.toEntity(user.city)
         )
         val savedEntity = userRepository.save(entity)
-        return mapper.toDomain(savedEntity)
+        val newAccessToken = jwtService.generateAccessToken(savedEntity.userId.toHexString())
+        val userData : User = mapper.toDomain(savedEntity)
+        val response = mapOf(
+            "user" to userData,
+            "token" to newAccessToken
+            )
+        return response
     }
 
     fun login(username: String, password: String): TokenPair {
