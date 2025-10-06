@@ -15,8 +15,8 @@ data class CityEntity(
     val country : CountryEntity,
     @Column("name")
     val name : String,
-    @OneToOne(mappedBy = "city")
-    val user: UserEntity? = null,
+    @OneToMany(mappedBy = "city", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    val user: List<UserEntity> = emptyList(),
     @OneToOne(mappedBy = "city")
     val district: DistrictEntity? = null,
     @OneToMany(mappedBy = "city")

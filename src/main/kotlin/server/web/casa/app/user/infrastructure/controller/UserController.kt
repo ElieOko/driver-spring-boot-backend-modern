@@ -16,7 +16,7 @@ class UserController(
 
     private val logger = LoggerFactory.getLogger(this::class.java)
     @GetMapping
-    fun getListUser(): ResponseEntity<List<User>>{
+    fun getListUser(): ResponseEntity<List<User?>>{
         val data = userService.findAllUser()
         return ResponseEntity.ok().body(data)
     }

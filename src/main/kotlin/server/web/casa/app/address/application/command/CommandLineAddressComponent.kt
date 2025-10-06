@@ -20,9 +20,8 @@ class CommandLineAddressComponent(
 
     override fun run(vararg args: String) {
         log.info("***********************")
-        //createCountry()
-        //
-    // createCity()
+        createCountry()
+        createCity()
     }
 
     fun createCity(){

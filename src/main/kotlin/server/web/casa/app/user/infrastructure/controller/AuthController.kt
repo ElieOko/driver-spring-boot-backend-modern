@@ -1,6 +1,5 @@
 package server.web.casa.app.user.infrastructure.controller
 
-
 import server.web.casa.app.user.domain.model.User
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
@@ -28,7 +27,7 @@ class AuthController(
     @PostMapping(ROUTE_REGISTER)
     fun register(
         @Valid @RequestBody user: UserRequest
-    ): ResponseEntity<Map<String, Any>> {
+    ): ResponseEntity<Map<String, Any?>> {
         val city = cityService.findByIdCity(user.cityId)
         val typeAccount = typeAccountService.findByIdTypeAccount(user.typeAccountId)
         if (city != null && typeAccount != null){
@@ -45,7 +44,7 @@ class AuthController(
            val response = mapOf(
                "user" to data.first,
                "token" to data.second,
-               "message" to "Votre compte ${data.first.typeAccount?.name?.capitalize()} a été créer avec succès"
+               "message" to "Votre compte ${data.first?.typeAccount?.name?.capitalize()} a été créer avec succès"
             )
            return ResponseEntity.status(201).body(response)
         }
@@ -56,7 +55,7 @@ class AuthController(
     @PostMapping(ROUTE_LOGIN)
     fun login(
       @Valid @RequestBody body: UserAuth
-    ): ResponseEntity<Map<String, Any>> {
+    ): ResponseEntity<Map<String, Any?>> {
       val data = authService.login(body.username, body.password)
       val response = mapOf(
           "user" to data.second,
