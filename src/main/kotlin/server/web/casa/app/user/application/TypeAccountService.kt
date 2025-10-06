@@ -1,6 +1,7 @@
 package server.web.casa.app.user.application
 
 import org.springframework.stereotype.Service
+import server.web.casa.app.address.domain.model.City
 import server.web.casa.app.user.domain.model.TypeAccount
 import server.web.casa.app.user.infrastructure.persistence.entity.TypeAccountEntity
 import server.web.casa.app.user.infrastructure.persistence.mapper.TypeAccountMapper
@@ -16,5 +17,10 @@ class TypeAccountService(
         return data.stream().map {
             mapper.toDomain(TypeAccountEntity(it!!.typeAccountId,it.name))
         }.toList()
+    }
+
+    fun findByIdTypeAccount(id : Long) : TypeAccount? {
+        val data = repository.findById(id).orElse(null)
+        return mapper.toDomain(data)
     }
 }
