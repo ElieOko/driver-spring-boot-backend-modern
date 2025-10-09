@@ -4,13 +4,16 @@ import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Profile
 import org.springframework.http.HttpStatusCode
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
+import server.web.casa.utils.Mode
 import java.util.Base64
 import java.util.Date
 
 @Service
+@Profile(Mode.DEV)
 class JwtService(
     @Value("\${jwt.secret}") private val jwtSecret: String
 ) {
