@@ -2,6 +2,7 @@ package server.web.casa.app.user.infrastructure.controller
 
 import server.web.casa.app.user.domain.model.User
 import jakarta.validation.Valid
+import org.springframework.context.annotation.Profile
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -18,6 +19,7 @@ const val ROUTE_REGISTER = AuthRoute.REGISTER
 const val ROUTE_LOGIN = AuthRoute.LOGIN
 @RestController
 @RequestMapping
+@Profile("dev")
 class AuthController(
     private val authService: AuthService,
     private val cityService: CityService,
@@ -44,7 +46,7 @@ class AuthController(
            val response = mapOf(
                "user" to data.first,
                "token" to data.second,
-               "message" to "Votre compte ${data.first?.typeAccount?.name?.capitalize()} a été créer avec succès"
+               "message" to "Votre compte ${data.first?.typeAccount?.name} a été créer avec succès"
             )
            return ResponseEntity.status(201).body(response)
         }

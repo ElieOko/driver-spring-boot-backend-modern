@@ -6,12 +6,15 @@ import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity
 import server.web.casa.app.user.infrastructure.persistence.mapper.UserMapper
 import server.web.casa.app.user.infrastructure.persistence.repository.UserRepository
 import jakarta.persistence.EntityNotFoundException
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 import server.web.casa.app.address.infrastructure.persistence.mapper.CityMapper
 import server.web.casa.app.user.infrastructure.persistence.mapper.TypeAccountMapper
+import server.web.casa.utils.Mode
 import kotlin.time.ExperimentalTime
 
 @Service
+@Profile(Mode.DEV)
 class UserService(
     private val repository: UserRepository,
     private val mapper: UserMapper,

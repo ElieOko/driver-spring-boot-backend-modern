@@ -1,13 +1,16 @@
 package server.web.casa.app.user.application
 
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 import server.web.casa.app.address.domain.model.City
 import server.web.casa.app.user.domain.model.TypeAccount
 import server.web.casa.app.user.infrastructure.persistence.entity.TypeAccountEntity
 import server.web.casa.app.user.infrastructure.persistence.mapper.TypeAccountMapper
 import server.web.casa.app.user.infrastructure.persistence.repository.TypeAccountRepository
+import server.web.casa.utils.Mode
 
 @Service
+@Profile(Mode.DEV)
 class TypeAccountService(
   private val repository: TypeAccountRepository,
   private val mapper: TypeAccountMapper
