@@ -2,16 +2,19 @@ package server.web.casa.app.address.application.command
 
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
+import org.springframework.context.annotation.Profile
 import org.springframework.core.annotation.Order
 import org.springframework.stereotype.Component
 import server.web.casa.app.address.infrastructure.persistence.entity.CityEntity
 import server.web.casa.app.address.infrastructure.persistence.entity.CountryEntity
 import server.web.casa.app.address.infrastructure.persistence.repository.CityRepository
 import server.web.casa.app.address.infrastructure.persistence.repository.CountryRepository
+import server.web.casa.utils.Mode
 import kotlin.jvm.optionals.toList
 
 @Component
 @Order(1)
+@Profile(Mode.DEV)
 class CommandLineAddressComponent(
    private val cityRepository: CityRepository,
    private val countryRepository: CountryRepository
@@ -20,8 +23,13 @@ class CommandLineAddressComponent(
 
     override fun run(vararg args: String) {
         log.info("***********************")
-        createCountry()
-        createCity()
+        try {
+//            createCountry()
+//            createCity()
+        } catch (e: Exception){
+            log.info(e.message)
+        }
+
     }
 
     fun createCity(){

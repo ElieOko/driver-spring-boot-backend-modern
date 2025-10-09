@@ -1,10 +1,13 @@
 package server.web.casa.app.address.infrastructure.persistence.mapper
 
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 import server.web.casa.app.address.domain.model.City
 import server.web.casa.app.address.infrastructure.persistence.entity.CityEntity
+import server.web.casa.utils.Mode
 
 @Component
+@Profile(Mode.DEV)
 class CityMapper(
 //    val userMapper: UserMapper,
     val countryMapper: CountryMapper,
