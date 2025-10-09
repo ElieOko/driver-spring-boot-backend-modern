@@ -2,21 +2,12 @@ package server.web.casa.app.actor.infrastructure.controller
 
 import jakarta.validation.Valid
 import org.springframework.context.annotation.Profile
-import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
-import server.web.casa.app.actor.application.service.BailleurService
-import server.web.casa.app.actor.application.service.TypeCardService
-import server.web.casa.app.actor.domain.model.Bailleur
-import server.web.casa.app.actor.domain.model.BailleurUser
+import org.springframework.http.*
+import org.springframework.web.bind.annotation.*
+import server.web.casa.app.actor.application.service.*
+import server.web.casa.app.actor.domain.model.*
 import server.web.casa.app.address.application.service.CityService
-import server.web.casa.app.user.application.AuthService
-import server.web.casa.app.user.application.TypeAccountService
-import server.web.casa.app.user.application.UserService
+import server.web.casa.app.user.application.*
 import server.web.casa.app.user.domain.model.User
 import server.web.casa.route.actor.ActorRoute
 import server.web.casa.utils.Mode
@@ -85,7 +76,7 @@ class BailleurController(
     }
 
     @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun getAllCity(): ResponseEntity<Map<String, List<Bailleur>>> {
+    fun getAllBailleur(): ResponseEntity<Map<String, List<Bailleur>>> {
         val data = service.findAllBailleur()
         val response = mapOf("bailleurs" to data)
         return ResponseEntity.ok().body(response)
