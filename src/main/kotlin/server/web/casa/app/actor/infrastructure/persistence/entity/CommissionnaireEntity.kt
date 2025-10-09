@@ -8,7 +8,7 @@ import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity
 data class CommissionnaireEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column("id")
-    val commissionnaireId : Int,
+    val commissionnaireId : Long,
     @Column("firstName")
     val firstName   : String,
     @Column("lastName")
