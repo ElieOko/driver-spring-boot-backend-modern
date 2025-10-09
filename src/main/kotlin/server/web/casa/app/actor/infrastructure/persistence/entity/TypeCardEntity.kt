@@ -13,4 +13,8 @@ data class TypeCardEntity(
     val name : String,
     @OneToOne(mappedBy = "typeCard")
     val bailleur: BailleurEntity? = null,
+    @OneToOne(mappedBy = "typeCard")
+    val locataire: LocataireEntity? = null,
+    @OneToOne(mappedBy = "typeCard")
+    val commissionnaire: CommissionnaireEntity? = null,
 )

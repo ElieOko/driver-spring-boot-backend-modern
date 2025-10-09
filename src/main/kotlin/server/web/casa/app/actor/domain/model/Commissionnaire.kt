@@ -1,10 +1,9 @@
 package server.web.casa.app.actor.domain.model
 
-import jakarta.validation.constraints.NotNull
 import server.web.casa.app.user.domain.model.User
 
-data class Bailleur(
-    val bailleurId : Long = 0,
+data class Commissionnaire(
+    val commissionnaireId : Long = 0,
     val firstName  : String,
     val lastName   : String,
     val fullName   : String,
@@ -15,6 +14,5 @@ data class Bailleur(
     val parrain    : User? = null,
     val user       : User?,
     val typeCard   : TypeCard,
-    val numberCard : String? = null,
-    val note       : String? = null
+    val numberCard : String? = null
 )

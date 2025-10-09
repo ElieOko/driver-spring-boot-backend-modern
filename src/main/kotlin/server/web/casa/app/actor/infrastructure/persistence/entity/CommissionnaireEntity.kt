@@ -1,6 +1,7 @@
 package server.web.casa.app.actor.infrastructure.persistence.entity
 
 import jakarta.persistence.*
+import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity
 
 @Entity
 @Table(name = "commissionnaires")
@@ -22,10 +23,12 @@ data class CommissionnaireEntity(
     val cardFront   : String,
     @Column("cardBack")
     val cardBack    : String,
-    @Column("userId")
-    val userId      : Int,
-    @Column("typeCardId")
-    val typeCardId  : Int,
+    @OneToOne
+    @JoinColumn(name = "userId")
+    val user : UserEntity?,
+    @OneToOne
+    @JoinColumn(name = "typeCardId")
+    val typeCard : TypeCardEntity,
     @Column("numberCard")
     val numberCard  : String? = null
 )

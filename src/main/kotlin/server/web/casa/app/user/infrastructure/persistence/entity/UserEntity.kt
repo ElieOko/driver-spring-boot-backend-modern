@@ -13,6 +13,8 @@ import jakarta.persistence.OneToMany
 import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
 import server.web.casa.app.actor.infrastructure.persistence.entity.BailleurEntity
+import server.web.casa.app.actor.infrastructure.persistence.entity.CommissionnaireEntity
+import server.web.casa.app.actor.infrastructure.persistence.entity.LocataireEntity
 import server.web.casa.app.address.infrastructure.persistence.entity.CityEntity
 import server.web.casa.app.address.infrastructure.persistence.entity.DistrictEntity
 import server.web.casa.app.property.infrastructure.persistence.PropertyEntity
@@ -48,6 +50,10 @@ data class UserEntity @OptIn(ExperimentalTime::class) constructor(
     val properties : List<PropertyEntity> = emptyList(),
     @OneToOne(mappedBy = "user")
     val bailleur: BailleurEntity? = null,
+    @OneToOne(mappedBy = "user")
+    val commissionnaire: CommissionnaireEntity? = null,
+    @OneToOne(mappedBy = "user")
+    val locataire: LocataireEntity? = null,
     @OneToOne(mappedBy = "parrain")
     val parrainBailleur: BailleurEntity? = null,
 
