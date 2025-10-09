@@ -1,13 +1,16 @@
 package server.web.casa.app.actor.application.service
 
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 import server.web.casa.app.actor.domain.model.Bailleur
 import server.web.casa.app.actor.infrastructure.persistence.entity.BailleurEntity
 import server.web.casa.app.actor.infrastructure.persistence.mapper.BailleurMapper
 import server.web.casa.app.actor.infrastructure.persistence.repository.BailleurRepository
 import server.web.casa.app.address.domain.model.City
+import server.web.casa.utils.Mode
 
 @Service
+@Profile(Mode.DEV)
 class BailleurService(
     private val repository: BailleurRepository,
     private val mapper: BailleurMapper

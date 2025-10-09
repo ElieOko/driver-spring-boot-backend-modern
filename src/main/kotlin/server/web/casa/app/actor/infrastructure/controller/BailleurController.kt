@@ -1,6 +1,7 @@
 package server.web.casa.app.actor.infrastructure.controller
 
 import jakarta.validation.Valid
+import org.springframework.context.annotation.Profile
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -18,11 +19,13 @@ import server.web.casa.app.user.application.TypeAccountService
 import server.web.casa.app.user.application.UserService
 import server.web.casa.app.user.domain.model.User
 import server.web.casa.route.actor.ActorRoute
+import server.web.casa.utils.Mode
 
 const val ROUTE_ACTOR_BAILLEUR = ActorRoute.BAILLEUR
 
 @RestController
 @RequestMapping(ROUTE_ACTOR_BAILLEUR)
+@Profile(Mode.DEV)
 class BailleurController(
    private val service : BailleurService,
    private val authService: AuthService,
@@ -70,7 +73,7 @@ class BailleurController(
             )
             val bailleutCreated = service.createBailleur(data)
             val response = mapOf(
-                "message" to "Votre compte ${userCreated.first?.typeAccount?.name?.capitalize()} a été créer avec succès",
+                "message" to "Votre compte ${userCreated.first?.typeAccount?.name} a été créer avec succès",
                 "user" to userCreated.first,
                 "bailleur" to bailleutCreated,
                 "token" to userCreated.second
