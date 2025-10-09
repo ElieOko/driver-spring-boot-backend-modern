@@ -1,6 +1,46 @@
 services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui:v5.29.3
+    environment:
+      SWAGGER_JSON: /oas/openapi.yml
+    ports:
+      - "8089:8080"
+    volumes:
+      - ../openapi:/oas
+  casa-spring-app :
+    image: 'elieoko/casa-spring-app:latest'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: casa-spring-app
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/casa
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - JWT_SECRET_BASE64=
+#      - SERVER_PORT=8083
+    ports:
+      - "8083:8083"
+  db :
+    image: postgres:latest
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=casa
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
   adminer:
     image: 'adminer:latest'
     #    restart: always
     ports:
-      - 9084:8080
+      - "9084:8080"
+volumes:
+  pgdata:
