@@ -30,6 +30,8 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    //generator page
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     // security
 	implementation("org.springframework.boot:spring-boot-starter-security")
     // crypto
