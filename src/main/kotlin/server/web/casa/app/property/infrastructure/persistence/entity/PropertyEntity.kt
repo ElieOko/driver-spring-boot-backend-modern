@@ -54,7 +54,7 @@ data class PropertyEntity(
     val propertyType : PropertyTypeEntity,
     @ManyToOne
     @JoinColumn("user_id")
-    val user : UserEntity,
+    val user : UserEntity?,
     @Column(name = "latitude", nullable = true)
     val latitude : Double? = null,
     @Column(name = "longitude", nullable = true)
@@ -66,13 +66,13 @@ data class PropertyEntity(
     @Column("updatedAt")
     val updatedAt: LocalDate = LocalDate.now(),
     @OneToMany(mappedBy = "property")
-    val propertyImage : List<PropertyImageEntity?> = emptyList(),
+    val propertyImage : List<PropertyImageEntity> = emptyList(),
     @OneToMany(mappedBy = "property")
-    val propertyImageRoom : List<PropertyImageRoomEntity?> = emptyList(),
+    val propertyImageRoom : List<PropertyImageRoomEntity> = emptyList(),
     @OneToMany(mappedBy = "property")
-    val propertyImageLivingRoom : List<PropertyImageLivingRoomEntity?> = emptyList(),
+    val propertyImageLivingRoom : List<PropertyImageLivingRoomEntity> = emptyList(),
     @OneToMany(mappedBy = "property")
-    val propertyImageKitchen : List<PropertyImageKitchenEntity?> = emptyList(),
+    val propertyImageKitchen : List<PropertyImageKitchenEntity> = emptyList(),
 
     @ManyToMany
     @JoinTable(

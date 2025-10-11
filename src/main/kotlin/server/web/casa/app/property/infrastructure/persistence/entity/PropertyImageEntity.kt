@@ -11,7 +11,7 @@ data class PropertyImageEntity(
     val propertyImageId : Long,
     @ManyToOne
     @JoinColumn("property_id", nullable = true)
-    val property : PropertyEntity?,
+    val property : PropertyEntity,
     @Column(name = "name")
     val name : String,
     @Column(name = "path_image")

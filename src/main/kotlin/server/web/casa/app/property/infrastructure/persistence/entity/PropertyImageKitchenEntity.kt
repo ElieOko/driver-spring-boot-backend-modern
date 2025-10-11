@@ -15,7 +15,7 @@ data class PropertyImageKitchenEntity(
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val propertyImageId : Long,
+    val propertyImageKitchenId : Long,
     @ManyToOne
     @JoinColumn("property_id")
     val property : PropertyEntity,
