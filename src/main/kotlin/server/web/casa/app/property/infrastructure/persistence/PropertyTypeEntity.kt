@@ -8,9 +8,9 @@ data class PropertyTypeEntity(
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val propertyTypeId : Int,
+    val propertyTypeId : Long,
     @Column(name = "name")
     val name : String,
-    @Column(name = "description")
-    val description : String
+    @Column(name = "description", nullable = true)
+    val description : String? = ""
 )

@@ -4,44 +4,42 @@ import jakarta.persistence.*
 import server.web.casa.app.address.infrastructure.persistence.entity.CityEntity
 import server.web.casa.app.address.infrastructure.persistence.entity.CommuneEntity
 import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity
-import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
-import kotlin.time.Instant
+import java.time.LocalDate
 
 @Entity
 @Table(name = "properties")
-data class PropertyEntity @OptIn(ExperimentalTime::class) constructor(
+data class PropertyEntity(
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val propertyId : Int,
+    val propertyId : Long,
     @Column(name = "title")
     val title : String,
-    @Column(name = "description")
-    val description : String,
+    @Column(name = "description", nullable = true)
+    val description : String? = "",
     @Column(name = "price")
     val price : Double,
-    @Column(name = "surface")
-    val surface :Double,
-    @Column(name = "rooms")
-    val rooms :Int,
-    @Column(name = "bedrooms")
-    val bedrooms : Int,
-    @Column(name = "kitchen")
-    val kitchen : Int,
-    @Column(name = "livingRoom")
-    val livingRoom : Int,
-    @Column(name = "bathroom")
-    val bathroom : Int,
-    @Column(name = "floor")
-    val floor : Int,
+    @Column(name = "surface", nullable = true)
+    val surface :Double? = null,
+    @Column(name = "rooms", nullable = true)
+    val rooms :Int? = 0,
+    @Column(name = "bedrooms", nullable = true)
+    val bedrooms : Int? = 0,
+    @Column(name = "kitchen", nullable = true)
+    val kitchen : Int? = 0,
+    @Column(name = "livingRoom", nullable = true)
+    val livingRoom : Int? = 0,
+    @Column(name = "bathroom", nullable = true)
+    val bathroom : Int? = 0,
+    @Column(name = "floor", nullable = true)
+    val floor : Int? = 0,
     @Column(name = "address")
     val address : String,
     @ManyToOne
     @JoinColumn("city_id")
     val city : CityEntity,
-    @Column(name = "postalCode")
-    val postalCode : String,
+    @Column(name = "postalCode", nullable = true)
+    val postalCode : String? = "",
     @ManyToOne
     @JoinColumn("commune_id")
     val commune : CommuneEntity,
@@ -51,23 +49,22 @@ data class PropertyEntity @OptIn(ExperimentalTime::class) constructor(
     val sold : Boolean,
     @Column(name = "transactionType")
     val transactionType : String,
-    @OneToOne
+    @ManyToOne
     @JoinColumn("property_type_id")
-    val propertyType : PropertyEntity? = null,
+    val propertyType : PropertyTypeEntity,
     @ManyToOne
     @JoinColumn("user_id")
     val user : UserEntity,
     @Column(name = "latitude")
-    val latitude : Double,
+    val latitude : Double? = null,
     @Column(name = "longitude")
-    val longitude : Double,
+    val longitude : Double? = null,
     @Column(name = "isAvailable")
-    val isAvailable : Boolean,
+    val isAvailable : Boolean = true,
     @Column("createdAt")
-    val createdAt: Instant = Clock.System.now(),
+    val createdAt: LocalDate = LocalDate.now(),
     @Column("updatedAt")
-    val updatedAt: Instant = Clock.System.now(),
-
+    val updatedAt: LocalDate = LocalDate.now(),
     @ManyToMany
     @JoinTable(
         "PropertyFavorites",
@@ -75,6 +72,5 @@ data class PropertyEntity @OptIn(ExperimentalTime::class) constructor(
         inverseJoinColumns = [JoinColumn("user_id")]
     )
     val favorites : List<PropertyFavoriteEntity> = emptyList()
-
 
 )
