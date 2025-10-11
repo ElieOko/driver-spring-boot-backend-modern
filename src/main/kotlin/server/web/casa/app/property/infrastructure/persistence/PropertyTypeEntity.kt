@@ -12,5 +12,7 @@ data class PropertyTypeEntity(
     @Column(name = "name")
     val name : String,
     @Column(name = "description", nullable = true)
-    val description : String? = ""
+    val description : String? = "",
+    @OneToMany(mappedBy = "propertyType")
+    val property : List<PropertyEntity?> = emptyList(),
 )

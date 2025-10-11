@@ -1,7 +1,6 @@
 package server.web.casa.app.property.domain.model
 
-import server.web.casa.app.address.domain.model.City
-import server.web.casa.app.address.domain.model.Commune
+import server.web.casa.app.address.domain.model.*
 import server.web.casa.app.user.domain.model.User
 import java.time.LocalDate
 
@@ -29,6 +28,12 @@ data class Property(
     val latitude : Double? = null,
     val longitude : Double? = null,
     val isAvailable : Boolean = true,
+    val features : List<PropertyFeature> = emptyList(),
+    val favorites : List<PropertyFavorite> = emptyList(),
+    val propertyImage : List<PropertyImage?> = emptyList(),
+    val propertyImageRoom : List<PropertyImageRoom?> = emptyList(),
+    val propertyImageLivingRoom : List<PropertyImageLivingRoom?> = emptyList(),
+    val propertyImageKitchen : List<PropertyImageKitchen?> = emptyList(),
     val createdAt: LocalDate = LocalDate.now(),
     val updatedAt: LocalDate = LocalDate.now(),
 )

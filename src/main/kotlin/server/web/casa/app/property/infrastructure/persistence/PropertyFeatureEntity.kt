@@ -8,9 +8,7 @@ data class PropertyFeatureEntity(
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val propertyFeatureId : Int,
-    @Column(name = "name")
-    val name : String,
-    @Column(name = "description")
-    val description : String
+    val propertyPropertyFeature : Long,
+    @ManyToMany(mappedBy = "features")
+    val property : List<PropertyEntity>
 )

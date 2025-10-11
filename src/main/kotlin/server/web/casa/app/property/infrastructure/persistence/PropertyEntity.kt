@@ -55,9 +55,9 @@ data class PropertyEntity(
     @ManyToOne
     @JoinColumn("user_id")
     val user : UserEntity,
-    @Column(name = "latitude")
+    @Column(name = "latitude", nullable = true)
     val latitude : Double? = null,
-    @Column(name = "longitude")
+    @Column(name = "longitude", nullable = true)
     val longitude : Double? = null,
     @Column(name = "isAvailable")
     val isAvailable : Boolean = true,
@@ -65,6 +65,23 @@ data class PropertyEntity(
     val createdAt: LocalDate = LocalDate.now(),
     @Column("updatedAt")
     val updatedAt: LocalDate = LocalDate.now(),
+    @OneToMany(mappedBy = "property")
+    val propertyImage : List<PropertyImageEntity?> = emptyList(),
+    @OneToMany(mappedBy = "property")
+    val propertyImageRoom : List<PropertyImageRoomEntity?> = emptyList(),
+    @OneToMany(mappedBy = "property")
+    val propertyImageLivingRoom : List<PropertyImageLivingRoomEntity?> = emptyList(),
+    @OneToMany(mappedBy = "property")
+    val propertyImageKitchen : List<PropertyImageKitchenEntity?> = emptyList(),
+
+    @ManyToMany
+    @JoinTable(
+        "PropertyFeatures",
+        joinColumns = [JoinColumn("property_id")],
+        inverseJoinColumns = [JoinColumn("user_id")]
+    )
+    val features : List<PropertyFeatureEntity> = emptyList(),
+
     @ManyToMany
     @JoinTable(
         "PropertyFavorites",
@@ -72,5 +89,4 @@ data class PropertyEntity(
         inverseJoinColumns = [JoinColumn("user_id")]
     )
     val favorites : List<PropertyFavoriteEntity> = emptyList()
-
 )

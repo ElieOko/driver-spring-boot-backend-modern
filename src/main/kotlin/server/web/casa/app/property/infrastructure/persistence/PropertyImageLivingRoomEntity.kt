@@ -1,10 +1,17 @@
 package server.web.casa.app.property.infrastructure.persistence
 
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
+import jakarta.persistence.Table
 
+@Table(name = "property_image_living_rooms")
 @Entity
-@Table(name = "PropertyImages")
-data class PropertyImageEntity(
+data class PropertyImageLivingRoomEntity(
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
