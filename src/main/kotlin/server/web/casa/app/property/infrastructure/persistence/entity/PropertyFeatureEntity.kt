@@ -10,5 +10,5 @@ data class PropertyFeatureEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val propertyFeatureId : Long,
     @ManyToMany(mappedBy = "features")
-    val property : List<PropertyEntity>
+    val property : List<PropertyEntity?> = emptyList()
 )

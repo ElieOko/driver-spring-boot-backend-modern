@@ -17,6 +17,7 @@ import server.web.casa.app.actor.infrastructure.persistence.entity.Commissionnai
 import server.web.casa.app.actor.infrastructure.persistence.entity.LocataireEntity
 import server.web.casa.app.address.infrastructure.persistence.entity.CityEntity
 import server.web.casa.app.property.infrastructure.persistence.entity.PropertyEntity
+import server.web.casa.app.reservation.infrastructure.persistence.entity.ReservationEntity
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
@@ -55,5 +56,8 @@ data class UserEntity @OptIn(ExperimentalTime::class) constructor(
     val locataire: LocataireEntity? = null,
     @OneToOne(mappedBy = "parrain")
     val parrainBailleur: BailleurEntity? = null,
+
+    @OneToMany(mappedBy = "user")
+    val reservation : List<ReservationEntity> = emptyList()
 
 )

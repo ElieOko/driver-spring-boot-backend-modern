@@ -3,6 +3,7 @@ package server.web.casa.app.property.infrastructure.persistence.entity
 import jakarta.persistence.*
 import server.web.casa.app.address.infrastructure.persistence.entity.CityEntity
 import server.web.casa.app.address.infrastructure.persistence.entity.CommuneEntity
+import server.web.casa.app.reservation.infrastructure.persistence.entity.ReservationEntity
 import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity
 import java.time.LocalDate
 
@@ -73,6 +74,8 @@ data class PropertyEntity(
     val propertyImageLivingRoom : List<PropertyImageLivingRoomEntity> = emptyList(),
     @OneToMany(mappedBy = "property")
     val propertyImageKitchen : List<PropertyImageKitchenEntity> = emptyList(),
+    @OneToMany(mappedBy = "property")
+    val reservation : List<ReservationEntity> = emptyList(),
 
     @ManyToMany
     @JoinTable(
@@ -88,5 +91,5 @@ data class PropertyEntity(
         joinColumns = [JoinColumn("property_id")],
         inverseJoinColumns = [JoinColumn("user_id")]
     )
-    val favorites : List<PropertyFavoriteEntity> = emptyList()
+    val favorites : List<PropertyFavoriteEntity?> = emptyList()
 )

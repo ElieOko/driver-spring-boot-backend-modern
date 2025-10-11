@@ -3,9 +3,11 @@ package server.web.casa.app.property.infrastructure.controller
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import server.web.casa.app.property.application.service.*
+import server.web.casa.route.property.PropertyRoute
 
+const val ROUTE_PROPERTY = PropertyRoute.PROPERTY
 @RestController
-@RequestMapping()
+@RequestMapping(ROUTE_PROPERTY)
 class PropertyController(
     private val service : PropertyService,
     private val propertyTypeService: PropertyTypeService,

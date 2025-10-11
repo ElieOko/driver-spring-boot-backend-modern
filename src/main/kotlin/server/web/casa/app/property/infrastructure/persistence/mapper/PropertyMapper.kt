@@ -1,16 +1,18 @@
 package server.web.casa.app.property.infrastructure.persistence.mapper
 
+import org.springframework.stereotype.Component
 import server.web.casa.app.address.infrastructure.persistence.mapper.CityMapper
 import server.web.casa.app.property.domain.model.Property
 import server.web.casa.app.property.infrastructure.persistence.entity.PropertyEntity
 import server.web.casa.app.user.infrastructure.persistence.mapper.UserMapper
 
+@Component
 class PropertyMapper(
     private val cityMapper: CityMapper,
     private val userMapper: UserMapper,
     private val propertyImageLivingRoomMapper : PropertyImageLivingRoomMapper,
     private val propertyImageRoomMapper : PropertyImageRoomMapper,
-    private val propertyFavoriteMapper: PropertyFavoriteMapper,
+//    private val propertyFavoriteMapper: PropertyFavoriteMapper,
     private val propertyImageMapper: PropertyImageMapper,
     private val propertyImageKitchenMapper: PropertyImageKitchenMapper,
     private val propertyTypeMapper: PropertyTypeMapper,
@@ -42,7 +44,7 @@ class PropertyMapper(
             longitude = p.longitude,
             isAvailable = p.isAvailable,
             features = p.features.stream().map { propertyFeatureMapper.toDomain(it) }.toList(),
-            favorites = p.favorites.stream().map { propertyFavoriteMapper.toDomain(it) }.toList(),
+//            favorites = p.favorites.stream().map { propertyFavoriteMapper.toDomain(it) }.toList(),
             propertyImage = p.propertyImage.stream().map { propertyImageMapper.toDomain(it) }.toList(),
             propertyImageRoom = p.propertyImageRoom.stream().map { propertyImageRoomMapper.toDomain(it) }.toList(),
             propertyImageLivingRoom = p.propertyImageLivingRoom.stream().map { propertyImageLivingRoomMapper.toDomain(it) }.toList(),
@@ -78,7 +80,7 @@ class PropertyMapper(
             longitude = p.longitude,
             isAvailable = p.isAvailable,
             features = p.features.stream().map { propertyFeatureMapper.toEntity(it) }.toList(),
-            favorites = p.favorites.stream().map { propertyFavoriteMapper.toEntity(it) }.toList(),
+//            favorites = p.favorites.stream().map { propertyFavoriteMapper.toEntity(it) }.toList(),
             propertyImage = p.propertyImage.stream().map { propertyImageMapper.toEntity(it) }.toList(),
             propertyImageRoom = p.propertyImageRoom.stream().map { propertyImageRoomMapper.toEntity(it) }.toList(),
             propertyImageLivingRoom = p.propertyImageLivingRoom.stream().map { propertyImageLivingRoomMapper.toEntity(it) }.toList(),

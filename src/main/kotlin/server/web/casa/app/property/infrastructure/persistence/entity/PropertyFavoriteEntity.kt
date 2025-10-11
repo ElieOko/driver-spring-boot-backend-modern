@@ -10,5 +10,5 @@ data class PropertyFavoriteEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val propertyFavoriteId : Long,
     @ManyToMany(mappedBy = "favorites")
-    val property : List<PropertyEntity>
+    val property : List<PropertyEntity?> = emptyList()
 )

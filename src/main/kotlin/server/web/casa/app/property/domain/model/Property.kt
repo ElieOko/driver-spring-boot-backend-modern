@@ -29,7 +29,7 @@ data class Property(
     val longitude : Double? = null,
     val isAvailable : Boolean = true,
     val features : List<PropertyFeature> = emptyList(),
-    val favorites : List<PropertyFavorite> = emptyList(),
+    val favorites : List<PropertyFavorite?> = emptyList(),
     val propertyImage : List<PropertyImage> = emptyList(),
     val propertyImageRoom : List<PropertyImageRoom> = emptyList(),
     val propertyImageLivingRoom : List<PropertyImageLivingRoom> = emptyList(),

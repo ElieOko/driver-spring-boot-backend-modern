@@ -1,17 +1,17 @@
 package server.web.casa.app.property.infrastructure.persistence.mapper
 
+import org.springframework.stereotype.Component
 import server.web.casa.app.property.domain.model.PropertyType
 import server.web.casa.app.property.infrastructure.persistence.entity.PropertyTypeEntity
 
-class PropertyTypeMapper(
-    private val propertyMapper: PropertyMapper
-) {
+@Component
+class PropertyTypeMapper{
     fun toDomain(p : PropertyTypeEntity): PropertyType {
         return PropertyType(
             propertyTypeId = p.propertyTypeId,
             name = p.name,
             description = p.description,
-            property = p.property.stream().map {  propertyMapper.toDomain(it) }.toList()
+//            property = p.property.stream().map {  propertyMapper.toDomain(it) }.toList()
         )
     }
 
@@ -20,7 +20,7 @@ class PropertyTypeMapper(
             propertyTypeId = p.propertyTypeId,
             name = p.name,
             description = p.description,
-            property = p.property.stream().map {  propertyMapper.toEntity(it) }.toList()
+//            property = p.property.stream().map {  propertyMapper.toEntity(it) }.toList()
         )
     }
 }

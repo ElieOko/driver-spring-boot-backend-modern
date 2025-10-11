@@ -4,5 +4,5 @@ data class PropertyType(
     val propertyTypeId : Long,
     val name : String,
     val description : String? = "",
-    val property : List<Property>
+    val property : List<Property?> = emptyList()
 )

@@ -18,7 +18,7 @@ data class PropertyImageKitchenEntity(
     val propertyImageKitchenId : Long,
     @ManyToOne
     @JoinColumn("property_id")
-    val property : PropertyEntity,
+    val property : PropertyEntity? = null,
     @Column(name = "name")
     val name : String,
     @Column(name = "path_image")
