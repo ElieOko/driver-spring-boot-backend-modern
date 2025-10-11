@@ -1,7 +1,7 @@
 package server.web.casa.app.reservation.infrastructure.persistence.entity
 
 import jakarta.persistence.*
-import server.web.casa.app.property.infrastructure.persistence.PropertyEntity
+import server.web.casa.app.property.infrastructure.persistence.entity.PropertyEntity
 import server.web.casa.app.reservation.domain.model.ReservationStatus
 import server.web.casa.app.reservation.domain.model.ReservationType
 import server.web.casa.app.user.infrastructure.persistence.entity.UserEntity

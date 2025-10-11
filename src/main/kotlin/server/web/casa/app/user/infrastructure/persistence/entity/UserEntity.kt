@@ -16,8 +16,7 @@ import server.web.casa.app.actor.infrastructure.persistence.entity.BailleurEntit
 import server.web.casa.app.actor.infrastructure.persistence.entity.CommissionnaireEntity
 import server.web.casa.app.actor.infrastructure.persistence.entity.LocataireEntity
 import server.web.casa.app.address.infrastructure.persistence.entity.CityEntity
-import server.web.casa.app.address.infrastructure.persistence.entity.DistrictEntity
-import server.web.casa.app.property.infrastructure.persistence.PropertyEntity
+import server.web.casa.app.property.infrastructure.persistence.entity.PropertyEntity
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant

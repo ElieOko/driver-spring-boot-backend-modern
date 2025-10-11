@@ -1,4 +1,4 @@
-package server.web.casa.app.property.infrastructure.persistence
+package server.web.casa.app.property.infrastructure.persistence.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -9,9 +9,9 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 
-@Table(name = "property_image_rooms")
+@Table(name = "property_image_living_rooms")
 @Entity
-data class PropertyImageRoomEntity(
+data class PropertyImageLivingRoomEntity(
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,7 @@
 package server.web.casa.app.address.infrastructure.persistence.entity
 
 import jakarta.persistence.*
-import server.web.casa.app.property.infrastructure.persistence.PropertyEntity
+import server.web.casa.app.property.infrastructure.persistence.entity.PropertyEntity
 
 @Entity
 @Table(name = "communes")
