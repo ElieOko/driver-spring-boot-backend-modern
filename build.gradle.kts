@@ -26,10 +26,13 @@ repositories {
 	mavenCentral()
 	maven { url = uri("https://repo.spring.io/snapshot") }
 }
-
+extra["springCloudGcpVersion"] = "7.3.1"
+extra["springCloudVersion"] = "2025.0.0"
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    //gcs
+    implementation("com.google.cloud:spring-cloud-gcp-starter-storage")
     //generator page
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     // security
@@ -55,6 +58,13 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
+dependencyManagement {
+    imports {
+        mavenBom("com.google.cloud:spring-cloud-gcp-dependencies:${property("springCloudGcpVersion")}")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
+}
+
 
 kotlin {
 	compilerOptions {
