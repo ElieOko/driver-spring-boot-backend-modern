@@ -1,8 +1,11 @@
 package server.web.casa.app.property.infrastructure.controller
 
+import jakarta.validation.Valid
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import server.web.casa.app.property.application.service.*
+import server.web.casa.app.property.domain.model.request.PropertyRequest
+import server.web.casa.app.user.infrastructure.controller.RefreshRequest
 import server.web.casa.route.property.PropertyRoute
 
 const val ROUTE_PROPERTY = PropertyRoute.PROPERTY
@@ -18,7 +21,9 @@ class PropertyController(
 ) {
 
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
-    fun createProperty(){
+    fun createProperty(
+        @Valid @RequestBody request: PropertyRequest
+    ){
 
     }
 
