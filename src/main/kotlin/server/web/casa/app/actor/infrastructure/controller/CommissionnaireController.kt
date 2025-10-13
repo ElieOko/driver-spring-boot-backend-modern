@@ -1,5 +1,6 @@
 package server.web.casa.app.actor.infrastructure.controller
 
+import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import org.springframework.context.annotation.Profile
 import org.springframework.http.*
@@ -14,6 +15,7 @@ import server.web.casa.utils.Mode
 
 const val ROUTE_ACTOR_COMMISSIONNAIRE = ActorRoute.COMMISSIONNAIRE
 
+@Tag(name = "Commissionnaire", description = "Gestion des commissionnaires")
 @RestController
 @RequestMapping(ROUTE_ACTOR_COMMISSIONNAIRE)
 @Profile(Mode.DEV)

@@ -23,7 +23,7 @@ data class Property(
     val quartier : String,
     val sold : Boolean,
     val transactionType : String,
-    val propertyType : PropertyType?,
+    val propertyType : PropertyType,
     val user : User?,
     val latitude : Double? = null,
     val longitude : Double? = null,

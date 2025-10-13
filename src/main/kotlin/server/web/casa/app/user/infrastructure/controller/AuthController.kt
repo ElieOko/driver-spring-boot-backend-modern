@@ -1,5 +1,7 @@
 package server.web.casa.app.user.infrastructure.controller
 
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.tags.Tag
 import server.web.casa.app.user.domain.model.User
 import jakarta.validation.Valid
 import org.springframework.context.annotation.Profile
@@ -17,6 +19,8 @@ import server.web.casa.route.auth.AuthRoute
 
 const val ROUTE_REGISTER = AuthRoute.REGISTER
 const val ROUTE_LOGIN = AuthRoute.LOGIN
+
+@Tag(name = "Authentification", description = "Gestion des accès")
 @RestController
 @RequestMapping
 @Profile("dev")
@@ -25,7 +29,7 @@ class AuthController(
     private val cityService: CityService,
     private val typeAccountService: TypeAccountService
 ) {
-
+    @Operation(summary = "Création utilisateur")
     @PostMapping(ROUTE_REGISTER)
     fun register(
         @Valid @RequestBody user: UserRequest
@@ -54,6 +58,7 @@ class AuthController(
         return ResponseEntity.badRequest().body(response)
     }
 
+    @Operation(summary = "Connexion utilisateur")
     @PostMapping(ROUTE_LOGIN)
     fun login(
       @Valid @RequestBody body: UserAuth

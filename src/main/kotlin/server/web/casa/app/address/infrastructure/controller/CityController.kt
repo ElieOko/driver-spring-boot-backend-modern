@@ -1,5 +1,7 @@
 package server.web.casa.app.address.infrastructure.controller
 
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.context.annotation.Profile
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -13,12 +15,14 @@ import server.web.casa.utils.Mode
 
 const val ROUTE_CITY = AddressRoute.CITIES
 
+@Tag(name = "City", description = "Gestion des villes")
 @RestController
 @RequestMapping(ROUTE_CITY)
 @Profile(Mode.DEV)
 class CityController(
    private val service : CityService
 ) {
+    @Operation(summary = "Liste de villes")
     @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])
     fun getAllCity(): ResponseEntity<Map<String, List<City>>> {
         val data = service.findAllCity()

@@ -1,5 +1,6 @@
 package server.web.casa.app.address.infrastructure.controller
 
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.context.annotation.Profile
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -13,6 +14,7 @@ import server.web.casa.utils.Mode
 
 const val ROUTE = AddressRoute.COUNTRIES
 
+@Tag(name = "Country", description = "Gestion des pays")
 @RestController
 @RequestMapping(ROUTE)
 @Profile(Mode.DEV)

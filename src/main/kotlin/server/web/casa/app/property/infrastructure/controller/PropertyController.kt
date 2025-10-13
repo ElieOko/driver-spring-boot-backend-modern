@@ -1,5 +1,6 @@
 package server.web.casa.app.property.infrastructure.controller
 
+import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
@@ -11,6 +12,8 @@ import server.web.casa.app.user.application.UserService
 import server.web.casa.route.property.PropertyRoute
 
 const val ROUTE_PROPERTY = PropertyRoute.PROPERTY
+
+@Tag(name = "Property", description = "Gestion des propriètés")
 @RestController
 @RequestMapping(ROUTE_PROPERTY)
 class PropertyController(
@@ -37,7 +40,7 @@ class PropertyController(
        val user = userService.findIdUser(request.userId)
        val propertyType = propertyTypeService.findByIdPropertyType(request.propertyTypeId)
        val commune = communeService.findByIdCommune(request.communeId)
-        if (city != null && user != null && commune != null){
+        if (city != null && user != null && commune != null && propertyType != null){
             val property = Property(
                 title = request.title,
                 description = request.description,

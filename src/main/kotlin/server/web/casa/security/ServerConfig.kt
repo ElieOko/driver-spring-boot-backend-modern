@@ -33,7 +33,13 @@ class ServerConfig(
                     .requestMatchers(HttpMethod.GET,"/clients")
                     .permitAll()
 
-                    .requestMatchers("/")
+                    .requestMatchers(
+                        "/",
+                        "/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html/**",
+                        "/v3/**"
+                    )
                     .permitAll()
 
                     .requestMatchers("/api/*")

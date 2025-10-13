@@ -14,6 +14,6 @@ object AddressFeatures {
     const val CITIES_PATH = "cities"
     const val COUNTRIES_PATH = "countries"
     const val COMMUNES_PATH = "communes"
-    const val DISTRICTS_PATH = "districs"
+    const val DISTRICTS_PATH = "districts"
     const val QUARTIERS_PATH = "quartiers"
 }
