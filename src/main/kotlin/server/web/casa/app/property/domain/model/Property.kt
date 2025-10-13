@@ -5,7 +5,7 @@ import server.web.casa.app.user.domain.model.User
 import java.time.LocalDate
 
 data class Property(
-    val propertyId : Long,
+    val propertyId : Long = 0,
     val title : String,
     val description : String? = "",
     val price : Double,
@@ -23,7 +23,7 @@ data class Property(
     val quartier : String,
     val sold : Boolean,
     val transactionType : String,
-    val propertyType : PropertyType,
+    val propertyType : PropertyType?,
     val user : User?,
     val latitude : Double? = null,
     val longitude : Double? = null,

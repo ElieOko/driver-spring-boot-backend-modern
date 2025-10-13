@@ -31,8 +31,8 @@ data class PropertyRequest(
     val latitude : Double? = null,
     val longitude : Double? = null,
     val features : String = "",
-    val propertyImage : List<PropertyImageRequest?>,
-    val propertyImageRoom : List<PropertyImageRequest?>,
-    val propertyImageLivingRoom : List<PropertyImageRequest?>,
-    val propertyImageKitchen : List<PropertyImageRequest?>
+    val propertyImage : List<PropertyImageRequest?> = emptyList(),
+    val propertyImageRoom : List<PropertyImageRequest?> = emptyList(),
+    val propertyImageLivingRoom : List<PropertyImageRequest?> = emptyList(),
+    val propertyImageKitchen : List<PropertyImageRequest?> = emptyList()
 )
