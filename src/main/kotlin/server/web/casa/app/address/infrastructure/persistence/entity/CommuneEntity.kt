@@ -8,15 +8,14 @@ import server.web.casa.app.property.infrastructure.persistence.entity.PropertyEn
 data class CommuneEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column("id")
-    val communeId   : Int,
+    val communeId   : Long,
     @OneToOne
     @JoinColumn("district_id")
-    val district  : DistrictEntity,
+    val district  : DistrictEntity? = null,
     @Column("name")
     val name        : String,
     @OneToOne(mappedBy = "commune")
     val quartier : QuartierEntity? = null,
     @OneToMany(mappedBy = "commune")
     val properties : List<PropertyEntity> = emptyList()
-
 )

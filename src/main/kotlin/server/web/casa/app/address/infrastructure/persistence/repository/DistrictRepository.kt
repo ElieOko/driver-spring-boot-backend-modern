@@ -1,0 +1,7 @@
+package server.web.casa.app.address.infrastructure.persistence.repository
+
+import org.springframework.data.jpa.repository.JpaRepository
+import server.web.casa.app.address.infrastructure.persistence.entity.DistrictEntity
+
+interface DistrictRepository : JpaRepository<DistrictEntity, Long> {
+}

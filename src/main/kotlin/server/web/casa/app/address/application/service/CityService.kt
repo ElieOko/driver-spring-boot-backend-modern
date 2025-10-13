@@ -3,6 +3,7 @@ package server.web.casa.app.address.application.service
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 import server.web.casa.app.address.domain.model.City
+import server.web.casa.app.address.domain.model.Commune
 import server.web.casa.app.address.infrastructure.persistence.entity.CityEntity
 import server.web.casa.app.address.infrastructure.persistence.mapper.CityMapper
 import server.web.casa.app.address.infrastructure.persistence.repository.CityRepository
@@ -16,6 +17,12 @@ class CityService(
     private val repository: CityRepository,
     private val mapper: CityMapper
 ) {
+    fun saveCity(data: City): City {
+        val data = mapper.toEntity(data)
+        val result = repository.save(data)
+        return mapper.toDomain(result)
+    }
+
     fun findAllCity() : List<City>{
         val allEntity = repository.findAll()
         return allEntity.stream().map {

@@ -1,8 +1,8 @@
 package server.web.casa.app.address.domain.model
 
 data class Commune(
-    val communeId   : Int,
-    val district  : District,
+    val communeId   : Long,
+    val district  : District? = null,
     val name        : String,
 //    val quartier : Quartier
 )

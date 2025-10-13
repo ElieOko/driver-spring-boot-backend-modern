@@ -7,8 +7,8 @@ import jakarta.persistence.*
 data class DistrictEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column("id")
-    val districtId  : Int,
-    @OneToOne
+    val districtId  : Long,
+    @ManyToOne
     @JoinColumn("city_id")
     val city      : CityEntity,
     @Column("name")

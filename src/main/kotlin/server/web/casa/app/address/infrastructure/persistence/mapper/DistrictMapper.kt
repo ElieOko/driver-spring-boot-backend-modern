@@ -9,23 +9,20 @@ import server.web.casa.utils.Mode
 @Component
 @Profile(Mode.DEV)
 class DistrictMapper(
-    val cityMapper: CityMapper,
-//    val communeMapper: CommuneMapper
+    val cityMapper: CityMapper
 ) {
-    fun toDomain(districtEntity: DistrictEntity): District{
-        return District(
+    fun toDomain(districtEntity: DistrictEntity?): District?{
+        return if (districtEntity != null) District(
             districtId = districtEntity.districtId,
             city = cityMapper.toDomain(districtEntity.city),
-            name = districtEntity.name,
-//            commune = communeMapper.toDomain(districtEntity.commune)
-        )
+            name = districtEntity.name
+        ) else null
     }
-    fun toEntity(district: District): DistrictEntity{
-        return DistrictEntity(
+    fun toEntity(district: District?): DistrictEntity?{
+        return if (district != null) DistrictEntity(
             districtId = district.districtId,
             city = cityMapper.toEntity(district.city),
-            name = district.name,
-//            commune = communeMapper.toEntity(district.commune)
-        )
+            name = district.name
+        ) else null
     }
 }

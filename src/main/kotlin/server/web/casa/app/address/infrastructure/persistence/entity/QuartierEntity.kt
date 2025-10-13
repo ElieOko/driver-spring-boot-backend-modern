@@ -7,7 +7,7 @@ import jakarta.persistence.*
 data class QuartierEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column("id")
-    val quartierId  : Int,
+    val quartierId  : Long,
     @OneToOne
     @JoinColumn("commune_id")
     val commune   : CommuneEntity,
