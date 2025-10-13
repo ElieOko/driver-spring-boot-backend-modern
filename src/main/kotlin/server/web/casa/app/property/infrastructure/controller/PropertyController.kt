@@ -3,12 +3,11 @@ package server.web.casa.app.property.infrastructure.controller
 import jakarta.validation.Valid
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import server.web.casa.app.address.application.service.CityService
+import server.web.casa.app.address.application.service.*
 import server.web.casa.app.property.application.service.*
 import server.web.casa.app.property.domain.model.Property
 import server.web.casa.app.property.domain.model.request.PropertyRequest
 import server.web.casa.app.user.application.UserService
-import server.web.casa.app.user.infrastructure.controller.RefreshRequest
 import server.web.casa.route.property.PropertyRoute
 
 const val ROUTE_PROPERTY = PropertyRoute.PROPERTY
@@ -19,6 +18,7 @@ class PropertyController(
     private val propertyTypeService: PropertyTypeService,
     private val cityService: CityService,
     private val userService: UserService,
+    private val communeService: CommuneService,
     private val propertyImageService: PropertyImageService,
     private val propertyImageLivingRoomService: PropertyImageLivingRoomService,
     private val propertyImageRoomService: PropertyImageRoomService,
@@ -36,7 +36,8 @@ class PropertyController(
        val city = cityService.findByIdCity(request.cityId)
        val user = userService.findIdUser(request.userId)
        val propertyType = propertyTypeService.findByIdPropertyType(request.propertyTypeId)
-        if (city != null && user != null){
+       val commune = communeService.findByIdCommune(request.communeId)
+        if (city != null && user != null && commune != null){
             val property = Property(
                 title = request.title,
                 description = request.description,
@@ -51,7 +52,7 @@ class PropertyController(
                 address = request.address,
                 city = city,
                 postalCode = request.postalCode,
-                commune = ,
+                commune = commune,
                 quartier = request.quartier,
                 sold = request.sold,
                 transactionType = request.transactionType,
@@ -60,8 +61,8 @@ class PropertyController(
                 latitude = request.latitude,
                 longitude = request.longitude
             )
+            service.create(property)
         }
-
     }
 
     @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])

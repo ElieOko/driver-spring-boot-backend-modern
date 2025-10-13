@@ -12,10 +12,10 @@ class PropertyTypeService(
     private val repository: PropertyTypeRepository,
     private val mapper : PropertyTypeMapper
 ) {
-    fun create(p : PropertyType): PropertyTypeEntity {
+    fun create(p : PropertyType): PropertyType {
         val data = mapper.toEntity(p)
         val result = repository.save(data)
-        return result
+        return mapper.toDomain(result)
     }
     fun getAll() : List<PropertyType> = repository.findAll().stream().map { mapper.toDomain(it) }.toList()
 
