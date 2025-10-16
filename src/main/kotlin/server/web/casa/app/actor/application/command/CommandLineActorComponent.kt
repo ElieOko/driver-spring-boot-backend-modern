@@ -17,7 +17,13 @@ class CommandLineActorComponent(
 ) : CommandLineRunner {
     private val log = LoggerFactory.getLogger(this::class.java)
     override fun run(vararg args: String) {
-//        createCard()
+        try {
+            createCard()
+        }
+        catch (e : Exception){
+
+        }
+
     }
 
     fun createCard(){
