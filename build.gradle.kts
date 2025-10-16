@@ -8,7 +8,7 @@ plugins {
 
 group = "server.web"
 version = "0.0.1-SNAPSHOT"
-description = "Projet backend de Casa avec Spring Boot Kotlin"
+description = "Projet backend de car avec Spring Boot Kotlin"
 
 java {
 	toolchain {
