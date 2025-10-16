@@ -1,24 +1,16 @@
 services:
-#  swagger-ui:
-#    image: swaggerapi/swagger-ui:v5.29.3
-#    environment:
-#      SWAGGER_JSON_URL: http://casa-spring-app:8083/v3/api-docs
-#    ports:
-#      - "8089:8080"
-#    volumes:
-#      - ../openapi:/oas
-  casa-spring-app :
-    image: 'elieoko/casa-spring-app:latest'
+  car-spring-app :
+    image: 'elieoko/car-spring-app:latest'
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: casa-spring-app
+    container_name: car-spring-app
     depends_on:
       - db
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/casa
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5433/car
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=root
 #      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
@@ -32,9 +24,9 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=casa
+      - POSTGRES_DB=car
     ports:
-      - "5436:5432"
+      - "5437:5433"
     volumes:
       - pgdata:/var/lib/postgresql/data
   adminer:
