@@ -6,11 +6,11 @@ services:
       dockerfile: Dockerfile
     container_name: car-spring-app
     depends_on:
-      - db
+      - dbs
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5433/car
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dbs:5432/car
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=root
 #      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
@@ -18,15 +18,15 @@ services:
 #      - SERVER_PORT=8083
     ports:
       - "8083:8084"
-  db :
+  dbs :
     image: postgres:latest
-    container_name: db
+    container_name: dbs
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=car
     ports:
-      - "5437:5433"
+      - "5437:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
   adminer:

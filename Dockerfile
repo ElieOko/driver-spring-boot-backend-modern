@@ -11,5 +11,5 @@ RUN chmod +x gradlew
 
 EXPOSE 8083
 ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} /app/casa.jar
-ENTRYPOINT ["java", "-jar", "/app/casa.jar"]
+COPY ${JAR_FILE} /app/car.jar
+ENTRYPOINT ["java", "-jar", "/app/car.jar"]

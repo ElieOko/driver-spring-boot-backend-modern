@@ -13,11 +13,11 @@ import server.web.car.app.user.domain.model.User
 import server.web.car.route.actor.ActorRoute
 import server.web.car.utils.Mode
 
-const val ROUTE_ACTOR_vendeur = ActorRoute.LOCATAIRE
+const val ROUTE_ACTOR_VENDEUR = ActorRoute.VENDEUR
 
 @Tag(name = "Vendeur", description = "Gestion des vendeurs")
 @RestController
-@RequestMapping(ROUTE_ACTOR_vendeur)
+@RequestMapping(ROUTE_ACTOR_VENDEUR)
 @Profile(Mode.DEV)
 class VendeurController(
     private val service : VendeurService,
@@ -28,7 +28,7 @@ class VendeurController(
     private val typeCardService: TypeCardService,
 ) {
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
-    fun create(
+    fun createVendeur(
         @Valid @RequestBody request: VendeurUser
     ): ResponseEntity<Map<String, Any?>> {
         val city = cityService.findByIdCity(request.user.cityId)

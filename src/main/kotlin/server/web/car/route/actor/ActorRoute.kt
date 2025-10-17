@@ -3,13 +3,13 @@ package server.web.car.route.actor
 import server.web.car.route.GlobalRoute
 
 object ActorRoute {
-    const val BAILLEUR = "${GlobalRoute.ROOT}/${ActorFeatures.BAILLEUR_PATH}"
+    const val VENDEUR = "${GlobalRoute.ROOT}/${ActorFeatures.VENDEUR_PATH}"
     const val COMMISSIONNAIRE = "${GlobalRoute.ROOT}/${ActorFeatures.COMMISSIONNAIRE_PATH}"
-    const val LOCATAIRE = "${GlobalRoute.ROOT}/${ActorFeatures.LOCATAIRE_PATH}"
+    const val ACHETEUR = "${GlobalRoute.ROOT}/${ActorFeatures.ACHETEUR_PATH}"
 }
 
 object ActorFeatures{
-    const val BAILLEUR_PATH = "bailleurs"
+    const val VENDEUR_PATH = "vendeurs"
     const val COMMISSIONNAIRE_PATH = "commissionnaires"
-    const val LOCATAIRE_PATH = "locataires"
+    const val ACHETEUR_PATH = "acheteurs"
 }
